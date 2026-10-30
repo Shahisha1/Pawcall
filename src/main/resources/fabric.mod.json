@@ -1,38 +1,20 @@
 {
-	"schemaVersion": 1,
-	"id": "pet-whistle",
-	"version": "${version}",
-	"name": "Pet Whistle",
-	"description": "This is an example description! Tell everyone what your mod is about!",
-	"authors": [
-		"Me!"
-	],
-	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
-	},
-	"license": "CC0-1.0",
-	"icon": "assets/pet-whistle/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"com.example.PetWhistle"
-		],
-		"client": [
-			"com.example.client.PetWhistleClient"
-		]
-	},
-	"mixins": [
-		"pet-whistle.mixins.json",
-		{
-			"config": "pet-whistle.client.mixins.json",
-			"environment": "client"
-		}
-	],
-	"depends": {
-		"fabricloader": ">=0.20.1",
-		"minecraft": "~26.3",
-		"java": ">=25",
-		"fabric-api": "*"
-	}
+  "schemaVersion": 1,
+  "id": "petwhistle",
+  "version": "1.0.0",
+  "name": "Pet Whistle",
+  "description": "Whistle to call your tamed pets. 12 block range, or 48 with a crafted Pet Whistle.",
+  "authors": ["Shahisha1"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.example.petwhistle.PetWhistle"],
+    "client": ["com.example.petwhistle.PetWhistleClient"]
+  },
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
 }

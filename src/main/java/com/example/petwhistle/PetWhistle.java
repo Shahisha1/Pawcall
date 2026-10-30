@@ -15,7 +15,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.TamableAnimal;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.phys.AABB;
 
 public class PetWhistle implements ModInitializer {
@@ -23,6 +22,7 @@ public class PetWhistle implements ModInitializer {
 	public static final double BASE_RANGE = 12.0;
 	public static final double WHISTLE_RANGE = 48.0;
 	private static final int COOLDOWN_TICKS = 20;
+	private static final double PET_APPROACH_SPEED = 1.25D;
 	private static final Map<UUID, Long> LAST_USED = new HashMap<>();
 
 	public static Identifier id(String path) {
@@ -42,7 +42,6 @@ public class PetWhistle implements ModInitializer {
 	public static void callPets(ServerPlayer player) {
 		ServerLevel level = (ServerLevel) player.level();
 
-		// Cooldown
 		long now = level.getGameTime();
 		Long last = LAST_USED.get(player.getUUID());
 		if (last != null && now - last < COOLDOWN_TICKS) {
@@ -50,7 +49,7 @@ public class PetWhistle implements ModInitializer {
 		}
 		LAST_USED.put(player.getUUID(), now);
 
-		double range = hasWhistle(player) ? WHISTLE_RANGE : BASE_RANGE;
+		double range = hasWhistleInHand(player) ? WHISTLE_RANGE : BASE_RANGE;
 		double rangeSq = range * range;
 		AABB area = player.getBoundingBox().inflate(range);
 
@@ -61,24 +60,17 @@ public class PetWhistle implements ModInitializer {
 						&& pet.distanceToSqr(player) <= rangeSq);
 
 		for (TamableAnimal pet : pets) {
-			pet.getNavigation().stop();
-			pet.setDeltaMovement(0, 0, 0);
-			pet.snapTo(player.getX(), player.getY(), player.getZ(), pet.getYRot(), pet.getXRot());
+			pet.getNavigation().moveTo(player, PET_APPROACH_SPEED);
 		}
 
 		level.playSound(null, player.blockPosition(), SoundEvents.EXPERIENCE_ORB_PICKUP,
 				SoundSource.PLAYERS, 1.0f, 1.5f);
 		player.sendSystemMessage(Component.literal(
-				"Whistled! " + pets.size() + " pet(s) came (range " + (int) range + ")"));
+				"Whistled! " + pets.size() + " pet(s) coming (range " + (int) range + ")"));
 	}
 
-	private static boolean hasWhistle(ServerPlayer player) {
-		Inventory inv = player.getInventory();
-		for (int i = 0; i < inv.getContainerSize(); i++) {
-			if (inv.getItem(i).is(ModItems.WHISTLE)) {
-				return true;
-			}
-		}
-		return false;
+	private static boolean hasWhistleInHand(ServerPlayer player) {
+		return player.getMainHandItem().is(ModItems.WHISTLE)
+				|| player.getOffhandItem().is(ModItems.WHISTLE);
 	}
 }

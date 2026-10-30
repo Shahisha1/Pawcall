@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "id": "petwhistle",
-  "version": "1.0.0",
-  "name": "Pet Whistle",
-  "description": "Whistle to call your tamed pets. 12 block range, or 48 with a crafted Pet Whistle.",
+  "id": "pawcall",
+  "version": "${version}",
+  "name": "Pawcall",
+  "description": "Call your tamed pets back to you. Quick calls reach 12 blocks; hold the Pawcall whistle to reach 48.",
   "authors": ["Shahisha1"],
   "license": "MIT",
   "environment": "*",
   "entrypoints": {
-    "main": ["com.example.petwhistle.PetWhistle"],
-    "client": ["com.example.petwhistle.PetWhistleClient"]
+    "main": ["com.example.pawcall.Pawcall"],
+    "client": ["com.example.pawcall.PawcallClient"]
   },
   "depends": {
     "fabricloader": "*",

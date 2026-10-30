@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17251b">
+  <meta name="description" content="Pet Whistle is a Fabric mod that calls your tamed companions to you. A quick call reaches 12 blocks. Hold the whistle to reach 48.">
+  <title>Pet Whistle | Call your companions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#101a13;--panel:#18251b;--panel2:#202f23;--line:#354635;--text:#f1f0df;--muted:#b4bba8;--green:#a7c879;--gold:#e6c56d;--brown:#8a6744;--max:1120px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;line-height:1.65}a{color:inherit;text-decoration:none}button,a{-webkit-tap-highlight-color:transparent}.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(16,26,19,.94);backdrop-filter:blur(14px);border-bottom:1px solid #29372a}.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.02em}.brand-mark{width:34px;height:34px;display:grid;place-items:center;background:var(--green);color:#17251b;border:3px solid #d7e5b8;box-shadow:inset -5px -5px 0 #73914e;font-size:17px}.navlinks{display:flex;gap:28px;color:var(--muted);font-size:14px}.navlinks a:hover{color:var(--green)}.nav-cta,.button{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 17px;border:1px solid var(--green);background:var(--green);color:#17251b;font-weight:800;font-size:13px;transition:transform .18s,background .18s}.nav-cta:hover,.button:hover{transform:translateY(-2px);background:#bdd895}.button.secondary{background:transparent;color:var(--text);border-color:#66775b}.button.secondary:hover{background:var(--panel2)}
+    .hero{position:relative;overflow:hidden;padding:104px 0 92px;background:linear-gradient(180deg,#1c3020 0%,#152419 70%,var(--bg) 100%);border-bottom:1px solid #29372a}.hero:before{content:"";position:absolute;inset:0;opacity:.14;background-image:linear-gradient(rgba(210,231,183,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(210,231,183,.18) 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(to bottom,black,transparent)}.hero-inner{position:relative;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:50px}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--green);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.eyebrow:before{content:"";width:24px;height:2px;background:var(--green)}h1,h2,h3,p{margin-top:0}h1{font-family:"Press Start 2P",monospace;font-size:clamp(28px,4.5vw,54px);line-height:1.5;letter-spacing:-.06em;margin:22px 0}.hero-copy{max-width:580px;color:#d0d6c7;font-size:18px}.hero-copy strong{color:white}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.micro{margin-top:20px;color:#aeb9a7;font-size:12px}.pixel-scene{min-height:320px;position:relative;display:grid;place-items:center}.scene-card{width:min(100%,390px);padding:22px;background:#243528;border:3px solid #52694b;box-shadow:12px 12px 0 rgba(0,0,0,.24);transform:rotate(1deg)}.scene-top{display:flex;justify-content:space-between;color:#c6d6b2;font-size:10px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid #53664b;padding-bottom:12px}.scene-art{height:190px;display:flex;align-items:center;justify-content:center;gap:14px;position:relative;background:linear-gradient(#89a66b 0 58%,#526d43 58% 100%);margin:16px 0;overflow:hidden}.sun{position:absolute;width:42px;height:42px;right:40px;top:28px;background:#e9d88c;box-shadow:0 0 0 8px rgba(233,216,140,.13)}.grass{position:absolute;bottom:0;left:0;right:0;height:24px;background:repeating-linear-gradient(90deg,#3e5837 0 18px,#49663d 18px 36px)}.pet{position:relative;z-index:2;width:86px;height:70px;background:#e8e3ce;border:5px solid #4a4539;box-shadow:inset -12px -9px 0 #b7b29e}.pet:before,.pet:after{content:"";position:absolute;top:-21px;width:22px;height:24px;background:#e8e3ce;border:4px solid #4a4539}.pet:before{left:4px;transform:rotate(-18deg)}.pet:after{right:4px;transform:rotate(18deg)}.pet i{position:absolute;width:7px;height:7px;background:#252a22;top:20px;left:16px;box-shadow:28px 0 #252a22}.pet b{position:absolute;width:18px;height:8px;background:#8e6b56;left:25px;top:38px}.whistle{z-index:2;width:20px;height:48px;background:#e4c56d;border:4px solid #594b2c;transform:rotate(35deg);box-shadow:5px 5px 0 rgba(0,0,0,.2)}.scene-caption{display:flex;justify-content:space-between;font-size:11px;color:#c4d0b8}.scene-caption b{color:var(--gold)}
+    .stats{border-bottom:1px solid var(--line);background:#131f16}.stats-grid{display:grid;grid-template-columns:repeat(3,1fr)}.stat{padding:25px 20px;text-align:center;border-right:1px solid var(--line)}.stat:last-child{border:0}.stat strong{display:block;color:var(--green);font-size:27px;font-weight:800}.stat span{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+    section.content{padding:88px 0}.section-head{max-width:650px;margin-bottom:38px}.section-head h2{font-size:clamp(25px,3vw,36px);line-height:1.2;margin:13px 0}.section-head p{color:var(--muted);margin:0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--panel);border:1px solid var(--line);padding:25px;min-height:190px}.card-number{font-family:"Press Start 2P",monospace;color:var(--gold);font-size:12px;margin-bottom:22px}.card h3{font-size:18px;margin-bottom:8px}.card p{font-size:14px;color:var(--muted);margin:0}.range-panel{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);background:var(--panel)}.range{padding:34px}.range+.range{border-left:1px solid var(--line);background:#202f23}.range-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}.range-value{font-size:48px;font-weight:800;line-height:1.2;color:var(--green);margin:10px 0}.range p{color:var(--muted);font-size:14px;margin:0}.range .key{display:inline-block;padding:4px 8px;border:1px solid #66775b;color:var(--text);font-weight:700;font-size:12px}
+    .install{display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:start}.steps{counter-reset:step;display:grid;gap:13px}.step{counter-increment:step;display:grid;grid-template-columns:38px 1fr;gap:14px;padding:17px;background:var(--panel);border:1px solid var(--line)}.step:before{content:counter(step,decimal-leading-zero);font-family:"Press Start 2P",monospace;font-size:10px;color:var(--gold);padding-top:5px}.step strong{display:block;font-size:14px}.step span{color:var(--muted);font-size:13px}.requirements{width:100%;border-collapse:collapse;background:var(--panel);font-size:13px}.requirements th,.requirements td{text-align:left;padding:14px;border-bottom:1px solid var(--line)}.requirements th{color:var(--muted);font-weight:600}.requirements td:last-child{font-weight:700;color:var(--green);text-align:right}.note{margin-top:16px;padding:15px;border-left:3px solid var(--gold);background:#28291e;color:#d6d2bb;font-size:13px}
+    .download{padding:48px;background:#263b29;border:1px solid #52694b;display:flex;align-items:center;justify-content:space-between;gap:30px}.download h2{font-size:28px;margin:0 0 8px}.download p{color:#c7d2bf;margin:0}.download-actions{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0}.faq{display:grid;grid-template-columns:1fr 1fr;gap:14px}.faq article{padding:22px;background:var(--panel);border:1px solid var(--line)}.faq h3{font-size:15px;margin-bottom:8px}.faq p{font-size:13px;color:var(--muted);margin:0}
+    footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:12px}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer-links{display:flex;gap:20px}.footer-links a:hover{color:var(--green)}
+    @media(max-width:800px){.hero-inner{grid-template-columns:1fr;gap:20px}.pixel-scene{min-height:260px}.navlinks{display:none}.cards{grid-template-columns:1fr}.install{grid-template-columns:1fr}.download{display:block}.download-actions{margin-top:22px}.range-panel{grid-template-columns:1fr}.range+.range{border-left:0;border-top:1px solid var(--line)}}
+    @media(max-width:520px){.wrap{width:min(100% - 30px,var(--max))}.hero{padding:72px 0 55px}h1{font-size:27px}.hero-copy{font-size:16px}.nav-cta{padding:10px 12px;font-size:11px}.stats-grid{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line);padding:16px}.stat:last-child{border-bottom:0}section.content{padding:62px 0}.download{padding:27px}.download h2{font-size:22px}.faq{grid-template-columns:1fr}.range{padding:26px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Pet Whistle home"><span class="brand-mark">P</span><span>PET WHISTLE</span></a>
+      <nav class="navlinks" aria-label="Main navigation"><a href="#features">Features</a><a href="#how-it-works">How it works</a><a href="#install">Installation</a><a href="#faq">FAQ</a></nav>
+      <a class="nav-cta" href="https://github.com/Shahisha1/pet-whistle">VIEW SOURCE ↗</a>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div>
+          <span class="eyebrow">A small mod for your big adventures</span>
+          <h1>YOUR PETS.<br>YOUR CALL.</h1>
+          <p class="hero-copy">A familiar whistle, and your tamed companions start making their way back to you. <strong>No teleporting. No lost sidekicks.</strong> Just a better way to keep your crew together.</p>
+          <div class="actions"><a class="button" href="#install">GET STARTED <span aria-hidden="true">→</span></a><a class="button secondary" href="https://github.com/Shahisha1/pet-whistle">EXPLORE ON GITHUB ↗</a></div>
+          <p class="micro">A free, open-source Fabric mod for Minecraft 26.3.</p>
+        </div>
+        <div class="pixel-scene" aria-label="Pixel-art scene showing a pet and a golden whistle">
+          <div class="scene-card">
+            <div class="scene-top"><span>FIELD NOTES / 001</span><span>COMPANION FOUND</span></div>
+            <div class="scene-art"><span class="sun"></span><div class="pet"><i></i><b></b></div><div class="whistle"></div><span class="grass"></span></div>
+            <div class="scene-caption"><span>YOUR COMPANION IS ON THE WAY</span><b>+48 BLOCKS</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="stats"><div class="wrap stats-grid"><div class="stat"><strong>12</strong><span>Block quick-call range</span></div><div class="stat"><strong>48</strong><span>Block whistle range</span></div><div class="stat"><strong>0</strong><span>Teleporting involved</span></div></div></div>
+    <section class="content" id="features">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">Built for the whole crew</span><h2>Bring your companions closer.</h2><p>Whether you're heading home or exploring somewhere new, Pet Whistle makes it easier to regroup without changing how your pets move through the world.</p></div>
+        <div class="cards">
+          <article class="card"><div class="card-number">01 / CALL</div><h3>They come running</h3><p>Eligible pets navigate toward your position using their normal pathfinding. They are not teleported to you.</p></article>
+          <article class="card"><div class="card-number">02 / RANGE</div><h3>Reach a little farther</h3><p>Use the quick call nearby, or hold the Pet Whistle to call companions from up to 48 blocks away.</p></article>
+          <article class="card"><div class="card-number">03 / CARE</div><h3>Let resting pets rest</h3><p>Pets ordered to sit stay where they are. Only tamed animals owned by you respond to your call.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="content" id="how-it-works" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">Two ways to call</span><h2>One key. Two ranges.</h2><p>The default keybind is G. You can change it in Minecraft's Controls menu.</p></div>
+        <div class="range-panel">
+          <div class="range"><span class="range-label">Quick call / Any held item</span><div class="range-value">12 blocks</div><p>Press <span class="key">G</span> with an empty hand or any item. Your nearby eligible pets will start moving toward you.</p></div>
+          <div class="range"><span class="range-label">Whistle call / Whistle in either hand</span><div class="range-value">48 blocks</div><p>Hold the crafted Pet Whistle in your main hand or offhand, then press <span class="key">G</span> to extend your call range.</p></div>
+        </div>
+      </div>
+    </section>
+    <section class="content" id="install">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">Get it running</span><h2>Installation, without the guesswork.</h2><p>Pet Whistle is built for Fabric. Make sure your game and dependencies match the versions below.</p></div>
+        <div class="install">
+          <div class="steps">
+            <div class="step"><div><strong>Install Fabric Loader</strong><span>Use the Fabric profile for Minecraft 26.3.</span></div></div>
+            <div class="step"><div><strong>Add Fabric API</strong><span>Install Fabric API 0.165.0+26.3 in the same instance.</span></div></div>
+            <div class="step"><div><strong>Get the mod JAR</strong><span>Download a published build from Releases when one is available, or build from source.</span></div></div>
+            <div class="step"><div><strong>Move it into your mods folder</strong><span>Place the JAR in the mods folder for your Fabric instance, then launch the game.</span></div></div>
+          </div>
+          <div>
+            <table class="requirements" aria-label="Required versions"><thead><tr><th>Requirement</th><th>Version</th></tr></thead><tbody><tr><td>Minecraft</td><td>26.3</td></tr><tr><td>Fabric Loader</td><td>0.20.1</td></tr><tr><td>Fabric API</td><td>0.165.0+26.3</td></tr><tr><td>Java</td><td>25+</td></tr></tbody></table>
+            <div class="note">No published JAR release is assumed here. If the Releases page is empty, use the build-from-source instructions in the repository README.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="content" style="padding-top:0">
+      <div class="wrap"><div class="download"><div><h2>Ready to keep your crew close?</h2><p>Explore the code, report an issue, or check for a downloadable release.</p></div><div class="download-actions"><a class="button" href="https://github.com/Shahisha1/pet-whistle/releases">CHECK RELEASES ↗</a><a class="button secondary" href="https://github.com/Shahisha1/pet-whistle">VIEW REPOSITORY ↗</a></div></div></div>
+    </section>
+    <section class="content" id="faq" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">A few quick answers</span><h2>Good to know.</h2></div>
+        <div class="faq">
+          <article><h3>Does it teleport my pets?</h3><p>No. Pets use navigation to travel toward you. They still need a path they can follow.</p></article>
+          <article><h3>Which pets respond?</h3><p>Tamed animals owned by you, as long as they are not ordered to sit and are within range.</p></article>
+          <article><h3>Can I use the whistle from my offhand?</h3><p>Yes. The extended range activates when the Pet Whistle is in either your main hand or offhand.</p></article>
+          <article><h3>Can I change the keybind?</h3><p>Yes. Open Options, then Controls, then Key Binds. Find the Pet Whistle binding and assign another key if needed.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><span>© <span id="year"></span> Pet Whistle. Made for the pets that never quite know where you're going.</span><div class="footer-links"><a href="https://github.com/Shahisha1/pet-whistle">GitHub</a><a href="https://github.com/Shahisha1/pet-whistle/issues">Report an issue</a><a href="https://github.com/Shahisha1/pet-whistle/blob/main/LICENSE">MIT License</a></div></div></footer>
+  <script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+</body>
+</html>

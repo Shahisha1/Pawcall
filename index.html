@@ -350,21 +350,31 @@
     .uiverse-download:hover{transform:translateY(2px);box-shadow:0 2px 0 #17271d;background:#f0d987}
     .uiverse-download:hover svg{animation:download-bounce .55s ease-in-out}
     .uiverse-download:active{transform:translateY(4px);box-shadow:none}
-    .uiverse-curseforge{
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;
-      padding:0 17px;border:2px solid #17271d;border-radius:8px;background:#F16436;
-      color:#fffaf1;font:800 15px/1 var(--sans);box-shadow:0 4px 0 #17271d;
-      transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+    /* Pretty Bat by aguerquin — original rotating cube treatment, adapted for CurseForge. */
+    .button-icon{
+      display:inline-flex;align-items:stretch;width:fit-content;height:fit-content;
+      border:3px #fff solid;cursor:pointer;text-decoration:none;
+      perspective:700px;vertical-align:middle;
     }
-    .uiverse-curseforge svg{width:21px;height:21px;flex:none;transition:transform .25s ease}
-    .uiverse-curseforge:hover{transform:translateY(2px);box-shadow:0 2px 0 #17271d;background:#ff784b}
-    .uiverse-curseforge:hover svg{transform:scale(1.1) rotate(-5deg)}
-    .uiverse-curseforge:active{transform:translateY(4px);box-shadow:none}
+    .button-icon .icon{display:flex;align-items:center;justify-content:center;background:#fff;padding:10px 10px 5px}
+    .button-icon .icon svg{display:block;width:25px;height:25px}
+    .button-icon .cube{position:relative;display:block;width:200px;height:20px;transform-style:preserve-3d;transition:all .4s}
+    .button-icon .side{
+      position:absolute;inset:0;width:200px;height:47px;display:flex;
+      justify-content:center;align-items:center;font:800 .8em/1 var(--sans);
+      text-transform:uppercase;letter-spacing:.5px;backface-visibility:hidden;
+    }
+    .button-icon .front{background:#222229;color:#fff;transform:translate3d(0,0,1em)}
+    .button-icon .top{background:#F16436;color:#fff;transform:rotateX(-90deg) translate3d(0,13.5px,2em)}
+    .button-icon:hover{border-color:#F16436}
+    .button-icon:hover .cube{transform:rotateX(90deg)}
+    .button-icon:focus-visible{outline:3px solid #F16436;outline-offset:5px}
+    @media(prefers-reduced-motion:reduce){.button-icon .cube{transition:none}}
     .hero-actions{gap:16px}
     .endcap .uiverse-download{white-space:nowrap}
     @keyframes download-bounce{0%,100%{transform:translateY(0)}35%{transform:translateY(4px)}65%{transform:translateY(-2px)}}
     @media(prefers-reduced-motion:reduce){
-      .uiverse-download,.uiverse-download svg,.uiverse-curseforge,.uiverse-curseforge svg{transition:none;animation:none!important}
+      .uiverse-download,.uiverse-download svg{transition:none;animation:none!important}
     }
 
   </style>
@@ -397,9 +407,14 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M5 17v3h14v-3"/></svg>
               <span>Download Pawcall</span>
             </a>
-            <a class="uiverse-curseforge" href="https://www.curseforge.com/minecraft/mc-mods/pawcall" target="_blank" rel="noopener" aria-label="View Pawcall on CurseForge">
-              <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path fill="currentColor" d="M29.4889 15.285C29.4889 15.285 36.8392 14.1158 38 10.7058H26.7401V8H2L5.0477 11.5674V15.2225 12.7377 14.8191 15.7122 17.0946C19.7842 20.9017 11.1328 26.048 11.1328 26.048L9.6493 31C11.9691 28.7711 16.3905 25.8892 24.4969 26.0282C21.412 27.0117 18.3101 28.5478 15.8952 31H32.2824L30.7393 26.048C30.7393 26.048 18.8623 18.9833 29.4889 15.285Z"/></svg>
-              <span>View on CurseForge</span>
+            <a class="button-icon" href="https://www.curseforge.com/minecraft/mc-mods/pawcall" target="_blank" rel="noopener" aria-label="View Pawcall on CurseForge">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false"><path d="M18.326 9.215s4.9-.773 5.674-3.027h-7.507V4.4H0l2.032 2.358v2.415s5.127-.266 7.11 1.237c2.714 2.516-3.053 5.917-3.053 5.917l-.99 3.273c1.547-1.473 4.494-3.377 9.899-3.286c-2.057.65-4.125 1.665-5.735 3.286h10.925l-1.029-3.273s-7.918-4.668-.833-7.112" fill="#222229"/></svg>
+              </span>
+              <span class="cube" aria-hidden="true">
+                <span class="side front">View on CurseForge</span>
+                <span class="side top">Download Pawcall</span>
+              </span>
             </a>
           </div>
           <div class="compat-strip" aria-label="Compatibility requirements">

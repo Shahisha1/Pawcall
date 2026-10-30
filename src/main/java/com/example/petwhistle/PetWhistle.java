@@ -68,8 +68,8 @@ public class PetWhistle implements ModInitializer {
 
 		level.playSound(null, player.blockPosition(), SoundEvents.EXPERIENCE_ORB_PICKUP,
 				SoundSource.PLAYERS, 1.0f, 1.5f);
-		player.displayClientMessage(Component.literal(
-				"Whistled! " + pets.size() + " pet(s) came (range " + (int) range + ")"), true);
+		player.sendSystemMessage(Component.literal(
+				"Whistled! " + pets.size() + " pet(s) came (range " + (int) range + ")"));
 	}
 
 	private static boolean hasWhistle(ServerPlayer player) {

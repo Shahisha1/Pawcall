@@ -350,21 +350,21 @@
     .uiverse-download:hover{transform:translateY(2px);box-shadow:0 2px 0 #17271d;background:#f0d987}
     .uiverse-download:hover svg{animation:download-bounce .55s ease-in-out}
     .uiverse-download:active{transform:translateY(4px);box-shadow:none}
-    .uiverse-star{
+    .uiverse-curseforge{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;
-      padding:0 17px;border:2px solid #17271d;border-radius:8px;background:#f6f3e7;
-      color:#243b2b;font:800 15px/1 var(--sans);box-shadow:0 4px 0 #17271d;
+      padding:0 17px;border:2px solid #17271d;border-radius:8px;background:#F16436;
+      color:#fffaf1;font:800 15px/1 var(--sans);box-shadow:0 4px 0 #17271d;
       transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
     }
-    .uiverse-star svg{width:19px;height:19px;fill:transparent;stroke:currentColor;stroke-width:1.8;transition:fill .18s ease,transform .25s ease}
-    .uiverse-star:hover{transform:translateY(2px);box-shadow:0 2px 0 #17271d;background:#fffdf4}
-    .uiverse-star:hover svg{fill:#e4c76c;transform:rotate(18deg) scale(1.12)}
-    .uiverse-star:active{transform:translateY(4px);box-shadow:none}
+    .uiverse-curseforge svg{width:21px;height:21px;flex:none;transition:transform .25s ease}
+    .uiverse-curseforge:hover{transform:translateY(2px);box-shadow:0 2px 0 #17271d;background:#ff784b}
+    .uiverse-curseforge:hover svg{transform:scale(1.1) rotate(-5deg)}
+    .uiverse-curseforge:active{transform:translateY(4px);box-shadow:none}
     .hero-actions{gap:16px}
     .endcap .uiverse-download{white-space:nowrap}
     @keyframes download-bounce{0%,100%{transform:translateY(0)}35%{transform:translateY(4px)}65%{transform:translateY(-2px)}}
     @media(prefers-reduced-motion:reduce){
-      .uiverse-download,.uiverse-download svg,.uiverse-star,.uiverse-star svg{transition:none;animation:none!important}
+      .uiverse-download,.uiverse-download svg,.uiverse-curseforge,.uiverse-curseforge svg{transition:none;animation:none!important}
     }
 
   </style>
@@ -397,9 +397,9 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M5 17v3h14v-3"/></svg>
               <span>Download Pawcall</span>
             </a>
-            <a class="uiverse-star" href="https://github.com/Shahisha1/Pawcall" target="_blank" rel="noopener" aria-label="Open Pawcall on GitHub to star the repository">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.85 5.78 6.38.93-4.62 4.5 1.09 6.36L12 17.36l-5.7 3 1.09-6.36-4.62-4.5 6.38-.93L12 2.8Z"/></svg>
-              <span>Star on GitHub</span>
+            <a class="uiverse-curseforge" href="https://www.curseforge.com/minecraft/mc-mods/pawcall" target="_blank" rel="noopener" aria-label="View Pawcall on CurseForge">
+              <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path fill="currentColor" d="M29.4889 15.285C29.4889 15.285 36.8392 14.1158 38 10.7058H26.7401V8H2L5.0477 11.5674V15.2225S12.7377 14.8191 15.7122 17.0946C19.7842 20.9017 11.1328 26.048 11.1328 26.048L9.6493 31C11.9691 28.7711 16.3905 25.8892 24.4969 26.0282C21.412 27.0117 18.3101 28.5478 15.8952 31H32.2824L30.7393 26.048C30.7393 26.048 18.8623 18.9833 29.4889 15.285Z"/></svg>
+              <span>View on CurseForge</span>
             </a>
           </div>
           <div class="compat-strip" aria-label="Compatibility requirements">

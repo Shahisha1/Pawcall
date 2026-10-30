@@ -76,7 +76,7 @@ cd Pawcall
 **Windows (PowerShell)**
 
 ```powershell
-.\\gradlew.bat build
+.\gradlew.bat build
 ```
 
 **macOS / Linux**
@@ -92,7 +92,7 @@ To launch the development client:
 **Windows**
 
 ```powershell
-.\\gradlew.bat runClient
+.\gradlew.bat runClient
 ```
 
 **macOS / Linux**

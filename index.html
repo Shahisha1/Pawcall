@@ -162,6 +162,7 @@
       .navlinks.open{display:flex}
       .navlinks a{padding:12px 4px;border-bottom:1px solid var(--line)}
       .navlinks .nav-cta{margin-top:12px;padding:12px;text-align:center;border:0}
+      .navlinks .nav-curseforge{align-self:flex-start;margin:12px 0 0;padding:6px 11px;border:2px solid #17271d;text-align:left}
       .hero{padding:48px 0}
       .hero-grid,.behaviour-layout,.craft-layout,.install-layout,.faq-layout{grid-template-columns:1fr;gap:28px}
       h1{font-size:clamp(43px,10vw,64px)}
@@ -350,26 +351,27 @@
     .uiverse-download:hover{transform:translateY(2px);box-shadow:0 2px 0 #17271d;background:#f0d987}
     .uiverse-download:hover svg{animation:download-bounce .55s ease-in-out}
     .uiverse-download:active{transform:translateY(4px);box-shadow:none}
-    /* Pretty Bat by aguerquin — original rotating cube treatment, adapted for CurseForge. */
-    .button-icon{
-      display:inline-flex;align-items:stretch;width:fit-content;height:fit-content;
-      border:3px #fff solid;cursor:pointer;text-decoration:none;
-      perspective:700px;vertical-align:middle;
+    /* Compact block-style CurseForge action, matched to Pawcall's game UI. */
+    .navlinks .nav-curseforge{
+      display:inline-flex;align-items:center;gap:9px;min-height:42px;
+      padding:6px 11px;border:2px solid #17271d;border-radius:0;
+      background:var(--pine);color:var(--white);font:800 13px/1 var(--sans);
+      letter-spacing:.02em;box-shadow:3px 3px 0 #795438;
+      transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
     }
-    .button-icon .icon{display:flex;align-items:center;justify-content:center;background:#fff;padding:10px 10px 5px}
-    .button-icon .icon svg{display:block;width:25px;height:25px}
-    .button-icon .cube{position:relative;display:block;width:200px;height:20px;transform-style:preserve-3d;transition:all .4s}
-    .button-icon .side{
-      position:absolute;inset:0;width:200px;height:47px;display:flex;
-      justify-content:center;align-items:center;font:800 .8em/1 var(--sans);
-      text-transform:uppercase;letter-spacing:.5px;backface-visibility:hidden;
+    .nav-curseforge-icon{
+      display:grid;place-items:center;width:25px;height:25px;
+      background:#F16436;color:#fff;border:1px solid #17271d;
     }
-    .button-icon .front{background:#222229;color:#fff;transform:translate3d(0,0,1em)}
-    .button-icon .top{background:#F16436;color:#fff;transform:rotateX(-90deg) translate3d(0,13.5px,2em)}
-    .button-icon:hover{border-color:#F16436}
-    .navlinks .button-icon{padding:0;background:transparent;color:inherit;font:inherit;font-weight:700}
-    .navlinks .button-icon:hover{color:inherit}
-    .navlinks .button-icon .cube{width:200px}
+    .nav-curseforge-icon svg{display:block;width:16px;height:16px}
+    .nav-curseforge-arrow{color:var(--sun);font:700 15px/1 var(--mono);transition:transform .16s ease}
+    .navlinks .nav-curseforge:hover{
+      background:var(--leaf);color:#fff;transform:translate(2px,2px);
+      box-shadow:1px 1px 0 #795438;
+    }
+    .navlinks .nav-curseforge:hover .nav-curseforge-arrow{transform:translate(2px,-2px)}
+    .navlinks .nav-curseforge:active{transform:translate(3px,3px);box-shadow:none}
+    .navlinks .nav-curseforge:focus-visible{outline:3px solid #F16436;outline-offset:4px}
     .uiverse-star{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;
       padding:0 17px;border:2px solid #17271d;border-radius:8px;background:#f6f3e7;
@@ -380,9 +382,6 @@
     .uiverse-star:hover{transform:translateY(2px);box-shadow:0 2px 0 #17271d;background:#fffdf4}
     .uiverse-star:hover svg{fill:#e4c76c;transform:rotate(18deg) scale(1.12)}
     .uiverse-star:active{transform:translateY(4px);box-shadow:none}
-    .button-icon:hover .cube{transform:rotateX(90deg)}
-    .button-icon:focus-visible{outline:3px solid #F16436;outline-offset:5px}
-    @media(prefers-reduced-motion:reduce){.button-icon .cube{transition:none}}
     .hero-actions{gap:16px}
     .endcap .uiverse-download{white-space:nowrap}
     @keyframes download-bounce{0%,100%{transform:translateY(0)}35%{transform:translateY(4px)}65%{transform:translateY(-2px)}}
@@ -404,14 +403,12 @@
         <a href="#behaviour">Pet behaviour</a>
         <a href="#craft">Crafting</a>
         <a href="#install">Compatibility</a>
-        <a class="nav-cta button-icon" href="https://www.curseforge.com/minecraft/mc-mods/pawcall" target="_blank" rel="noopener" aria-label="Download Pawcall on CurseForge">
-            <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false"><path d="M18.326 9.215s4.9-.773 5.674-3.027h-7.507V4.4H0l2.032 2.358v2.415s5.127-.266 7.11 1.237c2.714 2.516-3.053 5.917-3.053 5.917l-.99 3.273c1.547-1.473 4.494-3.377 9.899-3.286c-2.057.65-4.125 1.665-5.735 3.286h10.925l-1.029-3.273s-7.918-4.668-.833-7.112" fill="#222229"/></svg>
+        <a class="nav-cta nav-curseforge" href="https://www.curseforge.com/minecraft/mc-mods/pawcall" target="_blank" rel="noopener" aria-label="Download Pawcall on CurseForge">
+            <span class="nav-curseforge-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false"><path d="M18.326 9.215s4.9-.773 5.674-3.027h-7.507V4.4H0l2.032 2.358v2.415s5.127-.266 7.11 1.237c2.714 2.516-3.053 5.917-3.053 5.917l-.99 3.273c1.547-1.473 4.494-3.377 9.899-3.286c-2.057.65-4.125 1.665-5.735 3.286h10.925l-1.029-3.273s-7.918-4.668-.833-7.112" fill="currentColor"/></svg>
             </span>
-            <span class="cube" aria-hidden="true">
-              <span class="side front">View on CurseForge</span>
-              <span class="side top">Download Pawcall</span>
-            </span>
+            <span>CurseForge</span>
+            <span class="nav-curseforge-arrow" aria-hidden="true">↗</span>
           </a>
       </nav>
     </div>

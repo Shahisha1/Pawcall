@@ -18,7 +18,6 @@ public class PetWhistleClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		whistleKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
 				"key.petwhistle.whistle",
-				InputConstants.Type.KEYSYM,
 				InputConstants.KEY_G,
 				CATEGORY));
 

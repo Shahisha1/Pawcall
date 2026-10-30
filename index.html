@@ -338,6 +338,35 @@
       .wordmark span{font-size:25px}
     }
 
+
+    /* Uiverse-inspired action buttons: download motion + GitHub star treatment. */
+    .uiverse-download{
+      position:relative;display:inline-flex;align-items:center;justify-content:center;gap:11px;
+      min-height:50px;padding:0 19px;border:2px solid #17271d;border-radius:8px;
+      background:#e4c76c;color:#17271d;font:800 15px/1 var(--sans);
+      box-shadow:0 4px 0 #17271d;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+    }
+    .uiverse-download svg{width:19px;height:19px;flex:none;transition:transform .2s ease}
+    .uiverse-download:hover{transform:translateY(2px);box-shadow:0 2px 0 #17271d;background:#f0d987}
+    .uiverse-download:hover svg{animation:download-bounce .55s ease-in-out}
+    .uiverse-download:active{transform:translateY(4px);box-shadow:none}
+    .uiverse-star{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;
+      padding:0 17px;border:2px solid #17271d;border-radius:8px;background:#f6f3e7;
+      color:#243b2b;font:800 15px/1 var(--sans);box-shadow:0 4px 0 #17271d;
+      transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+    }
+    .uiverse-star svg{width:19px;height:19px;fill:transparent;stroke:currentColor;stroke-width:1.8;transition:fill .18s ease,transform .25s ease}
+    .uiverse-star:hover{transform:translateY(2px);box-shadow:0 2px 0 #17271d;background:#fffdf4}
+    .uiverse-star:hover svg{fill:#e4c76c;transform:rotate(18deg) scale(1.12)}
+    .uiverse-star:active{transform:translateY(4px);box-shadow:none}
+    .hero-actions{gap:16px}
+    .endcap .uiverse-download{white-space:nowrap}
+    @keyframes download-bounce{0%,100%{transform:translateY(0)}35%{transform:translateY(4px)}65%{transform:translateY(-2px)}}
+    @media(prefers-reduced-motion:reduce){
+      .uiverse-download,.uiverse-download svg,.uiverse-star,.uiverse-star svg{transition:none;animation:none!important}
+    }
+
   </style>
 </head>
 <body>
@@ -364,8 +393,14 @@
           <h1>Call your tamed pets in Minecraft.</h1>
           <p class="hero-intro">Call your owned, tamed pets from up to 12 blocks away. Equip the whistle to extend the range to 48.</p>
           <div class="hero-actions">
-            <a class="primary" href="https://www.curseforge.com/minecraft/mc-mods/pawcall" target="_blank" rel="noopener">Download on CurseForge <span aria-hidden="true">↗</span></a>
-            <a class="text-link" href="https://github.com/Shahisha1/Pawcall" target="_blank" rel="noopener">View source on GitHub ↗</a>
+            <a class="uiverse-download" href="https://www.curseforge.com/minecraft/mc-mods/pawcall" target="_blank" rel="noopener" aria-label="Download Pawcall on CurseForge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M5 17v3h14v-3"/></svg>
+              <span>Download Pawcall</span>
+            </a>
+            <a class="uiverse-star" href="https://github.com/Shahisha1/Pawcall" target="_blank" rel="noopener" aria-label="Open Pawcall on GitHub to star the repository">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.85 5.78 6.38.93-4.62 4.5 1.09 6.36L12 17.36l-5.7 3 1.09-6.36-4.62-4.5 6.38-.93L12 2.8Z"/></svg>
+              <span>Star on GitHub</span>
+            </a>
           </div>
           <div class="compat-strip" aria-label="Compatibility requirements">
             <span><b>Minecraft</b> 26.3</span>
@@ -523,7 +558,10 @@
     <section class="endcap">
       <div class="wrap endcap-inner">
         <div><h2>Bring them along.</h2><p>Check compatibility, then give your pets a call.</p></div>
-        <a class="primary" href="https://www.curseforge.com/minecraft/mc-mods/pawcall" target="_blank" rel="noopener">Get Pawcall ↗</a>
+        <a class="uiverse-download" href="https://www.curseforge.com/minecraft/mc-mods/pawcall" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M5 17v3h14v-3"/></svg>
+          <span>Download Pawcall</span>
+        </a>
       </div>
     </section>
   </main>

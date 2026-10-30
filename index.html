@@ -3,62 +3,270 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#17251b">
-  <meta name="description" content="Pawcall is a Fabric mod that calls your tamed companions to you. A quick call reaches 12 blocks. Hold the whistle to reach 48.">
-  <title>Pawcall | A little whistle. A long way home.</title>
+  <meta name="theme-color" content="#2d4a2b">
+  <title>Pawcall: call your tamed pets back in Minecraft (Fabric mod)</title>
+  <meta name="description" content="Pawcall is a Fabric mod for Minecraft 26.3. Press G and your tamed pets walk back to you: 12 blocks by key, 48 with a crafted whistle. No teleporting.">
+  <meta property="og:site_name" content="Pawcall">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pawcall: a little whistle, a long way home">
+  <meta property="og:description" content="Call your tamed pets back to you without teleporting them. Free, open-source Fabric mod for Minecraft.">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Pawcall wordmark next to the pixel-art whistle on a forest-green background">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Young+Serif&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Pawcall","applicationCategory":"GameApplication","operatingSystem":"Windows, macOS, Linux (Minecraft Java Edition, Fabric)","description":"A Fabric mod that calls your tamed pets back to you without teleporting them.","license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://www.curseforge.com/minecraft/mc-mods/pawcall","codeRepository":"https://github.com/Shahisha1/Pawcall","author":{"@type":"Person","name":"Shahisha1"}}</script>
   <style>
-    :root{color-scheme:dark;--bg:#101a13;--panel:#18251b;--panel2:#202f23;--line:#354635;--text:#f1f0df;--muted:#b4bba8;--green:#a7c879;--gold:#e6c56d;--max:1120px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;line-height:1.65}a{color:inherit;text-decoration:none}.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
-    .topbar{position:sticky;top:0;z-index:20;background:rgba(16,26,19,.94);backdrop-filter:blur(14px);border-bottom:1px solid #29372a}.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.02em}.brand-mark{width:34px;height:34px;display:grid;place-items:center;background:var(--green);color:#17251b;border:3px solid #d7e5b8;box-shadow:inset -5px -5px 0 #73914e;font-size:17px}.navlinks{display:flex;gap:28px;color:var(--muted);font-size:14px}.navlinks a:hover{color:var(--green)}.nav-cta,.button{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 17px;border:1px solid var(--green);background:var(--green);color:#17251b;font-weight:800;font-size:13px;transition:transform .18s,background .18s}.nav-cta:hover,.button:hover{transform:translateY(-2px);background:#bdd895}.button.secondary{background:transparent;color:var(--text);border-color:#66775b}.button.secondary:hover{background:var(--panel2)}
-    .hero{position:relative;overflow:hidden;padding:104px 0 92px;background:linear-gradient(180deg,#1c3020 0%,#152419 70%,var(--bg) 100%);border-bottom:1px solid #29372a}.hero:before{content:"";position:absolute;inset:0;opacity:.14;background-image:linear-gradient(rgba(210,231,183,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(210,231,183,.18) 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(to bottom,black,transparent)}.hero-inner{position:relative;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:50px}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--green);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.eyebrow:before{content:"";width:24px;height:2px;background:var(--green)}h1,h2,h3,p{margin-top:0}h1{font-family:"Press Start 2P",monospace;font-size:clamp(28px,4.5vw,54px);line-height:1.5;letter-spacing:-.06em;margin:22px 0}.hero-copy{max-width:580px;color:#d0d6c7;font-size:18px}.hero-copy strong{color:white}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.micro{margin-top:20px;color:#aeb9a7;font-size:12px}.pixel-scene{min-height:320px;position:relative;display:grid;place-items:center}.scene-card{width:min(100%,390px);padding:22px;background:#243528;border:3px solid #52694b;box-shadow:12px 12px 0 rgba(0,0,0,.24);transform:rotate(1deg)}.scene-top{display:flex;justify-content:space-between;color:#c6d6b2;font-size:10px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid #53664b;padding-bottom:12px}.scene-art{height:190px;display:flex;align-items:center;justify-content:center;gap:14px;position:relative;background:linear-gradient(#89a66b 0 58%,#526d43 58% 100%);margin:16px 0;overflow:hidden}.sun{position:absolute;width:42px;height:42px;right:40px;top:28px;background:#e9d88c;box-shadow:0 0 0 8px rgba(233,216,140,.13)}.grass{position:absolute;bottom:0;left:0;right:0;height:24px;background:repeating-linear-gradient(90deg,#3e5837 0 18px,#49663d 18px 36px)}.pet{position:relative;z-index:2;width:86px;height:70px;background:#e8e3ce;border:5px solid #4a4539;box-shadow:inset -12px -9px 0 #b7b29e}.pet:before,.pet:after{content:"";position:absolute;top:-21px;width:22px;height:24px;background:#e8e3ce;border:4px solid #4a4539}.pet:before{left:4px;transform:rotate(-18deg)}.pet:after{right:4px;transform:rotate(18deg)}.pet i{position:absolute;width:7px;height:7px;background:#252a22;top:20px;left:16px;box-shadow:28px 0 #252a22}.pet b{position:absolute;width:18px;height:8px;background:#8e6b56;left:25px;top:38px}.whistle{z-index:2;width:20px;height:48px;background:#e4c56d;border:4px solid #594b2c;transform:rotate(35deg);box-shadow:5px 5px 0 rgba(0,0,0,.2)}.scene-caption{display:flex;justify-content:space-between;font-size:11px;color:#c4d0b8}.scene-caption b{color:var(--gold)}
-    .stats{border-bottom:1px solid var(--line);background:#131f16}.stats-grid{display:grid;grid-template-columns:repeat(3,1fr)}.stat{padding:25px 20px;text-align:center;border-right:1px solid var(--line)}.stat:last-child{border:0}.stat strong{display:block;color:var(--green);font-size:27px;font-weight:800}.stat span{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
-    section.content{padding:88px 0}.section-head{max-width:650px;margin-bottom:38px}.section-head h2{font-size:clamp(25px,3vw,36px);line-height:1.2;margin:13px 0}.section-head p{color:var(--muted);margin:0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--panel);border:1px solid var(--line);padding:25px;min-height:190px}.card-number{font-family:"Press Start 2P",monospace;color:var(--gold);font-size:12px;margin-bottom:22px}.card h3{font-size:18px;margin-bottom:8px}.card p{font-size:14px;color:var(--muted);margin:0}.range-panel{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);background:var(--panel)}.range{padding:34px}.range+.range{border-left:1px solid var(--line);background:#202f23}.range-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}.range-value{font-size:48px;font-weight:800;line-height:1.2;color:var(--green);margin:10px 0}.range p{color:var(--muted);font-size:14px;margin:0}.range .key{display:inline-block;padding:4px 8px;border:1px solid #66775b;color:var(--text);font-weight:700;font-size:12px}
-    .install{display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:start}.steps{counter-reset:step;display:grid;gap:13px}.step{counter-increment:step;display:grid;grid-template-columns:38px 1fr;gap:14px;padding:17px;background:var(--panel);border:1px solid var(--line)}.step:before{content:counter(step,decimal-leading-zero);font-family:"Press Start 2P",monospace;font-size:10px;color:var(--gold);padding-top:5px}.step strong{display:block;font-size:14px}.step span{color:var(--muted);font-size:13px}.requirements{width:100%;border-collapse:collapse;background:var(--panel);font-size:13px}.requirements th,.requirements td{text-align:left;padding:14px;border-bottom:1px solid var(--line)}.requirements th{color:var(--muted);font-weight:600}.requirements td:last-child{font-weight:700;color:var(--green);text-align:right}.note{margin-top:16px;padding:15px;border-left:3px solid var(--gold);background:#28291e;color:#d6d2bb;font-size:13px}
-    .download{padding:48px;background:#263b29;border:1px solid #52694b;display:flex;align-items:center;justify-content:space-between;gap:30px}.download h2{font-size:28px;margin:0 0 8px}.download p{color:#c7d2bf;margin:0}.download-actions{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0}.faq{display:grid;grid-template-columns:1fr 1fr;gap:14px}.faq article{padding:22px;background:var(--panel);border:1px solid var(--line)}.faq h3{font-size:15px;margin-bottom:8px}.faq p{font-size:13px;color:var(--muted);margin:0}
-    footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:12px}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer-links{display:flex;gap:20px}.footer-links a:hover{color:var(--green)}
-    @media(max-width:800px){.hero-inner{grid-template-columns:1fr;gap:20px}.pixel-scene{min-height:260px}.navlinks{display:none}.cards{grid-template-columns:1fr}.install{grid-template-columns:1fr}.download{display:block}.download-actions{margin-top:22px}.range-panel{grid-template-columns:1fr}.range+.range{border-left:0;border-top:1px solid var(--line)}}@media(max-width:520px){.wrap{width:min(100% - 30px,var(--max))}.hero{padding:72px 0 55px}h1{font-size:27px}.hero-copy{font-size:16px}.nav-cta{padding:10px 12px;font-size:11px}.stats-grid{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line);padding:16px}.stat:last-child{border-bottom:0}section.content{padding:62px 0}.download{padding:27px}.download h2{font-size:22px}.faq{grid-template-columns:1fr}.range{padding:26px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+    /* Theme: Forest Canopy (forest #2d4a2b, sage #7d8471, olive #a4ac86, ivory #faf9f6) */
+    :root{
+      --forest:#2d4a2b;--forest-deep:#1f3520;--sage:#7d8471;--olive:#a4ac86;--ivory:#faf9f6;
+      --bg:#faf9f6;--surface:#fff;--surface-2:#f1f2e9;--line:#d8dccb;--text:#1f2a1d;--muted:#525c4e;--accent:#2d4a2b;--key:#e9ecdc;
+      --head:"Young Serif",Georgia,"FreeSerif",serif;--body:"Atkinson Hyperlegible","FreeSans",system-ui,sans-serif;--pixel:"Press Start 2P",monospace;
+      --max:1080px;color-scheme:light dark
+    }
+    @media(prefers-color-scheme:dark){:root{--bg:#141d14;--surface:#1b281b;--surface-2:#223122;--line:#334433;--text:#eef0e4;--muted:#b2baa5;--accent:#a4ac86;--key:#2a3b2a}}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:84px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.65}
+    a{color:inherit;text-decoration:none}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2,h3{font-family:var(--head);font-weight:400;line-height:1.15}
+    :focus-visible{outline:3px solid var(--olive);outline-offset:3px}
+    .wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
+    .skip{position:absolute;left:-999px;top:8px;background:var(--ivory);color:var(--forest);padding:8px 14px;z-index:50;font-weight:700}
+    .skip:focus{left:8px}
+
+    .topbar{position:sticky;top:0;z-index:20;background:var(--forest);border-bottom:1px solid var(--forest-deep);color:var(--ivory)}
+    .nav{height:66px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-family:var(--head);font-size:21px}
+    .brand img{width:30px;height:30px;image-rendering:pixelated}
+    .navlinks{display:flex;gap:26px;font-size:15px;color:#d5dac4}
+    .navlinks a:hover{color:#fff}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:6px;border:2px solid var(--ivory);background:var(--ivory);color:var(--forest);font-weight:700;font-size:15px;transition:transform .15s,background .15s}
+    .button:hover{transform:translateY(-2px);background:#fff}
+    .button.secondary{background:transparent;color:var(--ivory)}
+    .button.secondary:hover{background:rgba(250,249,246,.12)}
+    .button.small{padding:8px 14px;font-size:14px}
+
+    /* Flat hero (no gradient): solid forest with a pixel-grass edge */
+    .hero{background:var(--forest);color:var(--ivory);padding:84px 0 0;position:relative}
+    .hero-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-bottom:72px}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--olive)}
+    .eyebrow:before{content:"";width:22px;height:3px;background:currentColor}
+    .hero h1{font-size:clamp(42px,6.4vw,72px);margin:18px 0}
+    .hero h1 em{font-style:normal;color:var(--olive)}
+    .lead{max-width:540px;font-size:19px;color:#dfe4d0}
+    .lead strong{color:#fff}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .micro{margin-top:18px;font-size:14px;color:#b9c3a6}
+    .grass{height:28px;background:repeating-linear-gradient(90deg,#3e6035 0 28px,#497140 28px 56px)}
+
+    .scene{display:grid;gap:14px;justify-items:center}
+    .scene-art{width:min(100%,400px);height:230px;border:4px solid var(--forest-deep);position:relative;overflow:hidden;background:#b7cf9c}
+    .hill{position:absolute;left:0;right:0;bottom:0;height:92px;background:#6f8c57}
+    .turf{position:absolute;left:0;right:0;bottom:0;height:26px;background:repeating-linear-gradient(90deg,#4a6b3c 0 20px,#557a45 20px 40px)}
+    .sun{position:absolute;right:30px;top:24px;width:34px;height:34px;background:#f2e9b3}
+    .pet{position:absolute;bottom:50px;width:56px;height:44px;background:#ebe6d2;border:4px solid #4a4539;box-shadow:inset -8px -6px 0 #bdb8a2}
+    .pet:before,.pet:after{content:"";position:absolute;top:-15px;width:15px;height:16px;background:#ebe6d2;border:3px solid #4a4539}
+    .pet:before{left:3px}.pet:after{right:3px}
+    .pet i{position:absolute;width:5px;height:5px;top:13px;left:11px;background:#252a22;box-shadow:19px 0 #252a22}
+    .pet.p1{left:22px;opacity:.55}.pet.p2{left:110px;opacity:.8}.pet.p3{left:200px}
+    .trail{position:absolute;bottom:34px;left:30px;width:230px;border-top:4px dotted rgba(31,53,32,.5)}
+    .hand{position:absolute;right:22px;bottom:30px;width:88px;height:88px;image-rendering:pixelated}
+    .actionbar{font-family:var(--pixel);font-size:11px;line-height:1.7;color:#fff;background:rgba(0,0,0,.62);padding:10px 14px;width:min(100%,400px);text-align:center;text-shadow:2px 2px 0 #3a3a3a}
+    .actionbar span{color:#ffff55}
+
+    .stats{background:var(--surface-2);border-bottom:1px solid var(--line)}
+    .stats-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+    .stat{padding:24px 16px;text-align:center;border-right:1px solid var(--line)}
+    .stat:last-child{border:0}
+    .stat strong{display:block;font-family:var(--head);font-weight:400;font-size:38px;color:var(--accent)}
+    .stat span{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+    section.content{padding:80px 0}
+    section.content.tight{padding-top:0}
+    .section-head{max-width:640px;margin-bottom:34px}
+    .section-head h2{font-size:clamp(28px,3.4vw,40px);margin:12px 0}
+    .section-head p{color:var(--muted);margin:0}
+    .section-head .eyebrow{color:var(--sage)}
+
+    .trace{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+    .trace li{display:grid;grid-template-columns:70px 1fr;gap:16px;padding:22px 26px;border-bottom:1px solid var(--line)}
+    .trace li:last-child{border:0}
+    .trace .n{font-family:var(--pixel);font-size:11px;color:var(--sage);padding-top:7px}
+    .trace h3{font-size:20px;margin-bottom:4px}
+    .trace p{margin:0;color:var(--muted);font-size:16px}
+    code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;background:var(--key);padding:1px 6px;border-radius:4px}
+
+    .range-panel{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+    .range{padding:34px}
+    .range+.range{background:var(--forest);color:var(--ivory)}
+    .range-label{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .range+.range .range-label,.range+.range p{color:#cfd6bd}
+    .range-value{font-family:var(--head);font-size:56px;line-height:1.1;margin:10px 0;color:var(--accent)}
+    .range+.range .range-value{color:#fff}
+    .range p{color:var(--muted);margin:0}
+    .key{display:inline-block;padding:1px 9px;border-radius:5px;border:1px solid var(--sage);border-bottom-width:3px;background:var(--key);color:var(--text);font-weight:700;font-size:.9em}
+    .range+.range .key{color:var(--text)}
+
+    .craft{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+    .grid{display:grid;grid-template-columns:84px;grid-auto-rows:84px;gap:6px;padding:12px;background:#c6c6c6;border:3px solid #8b8b8b}
+    .slot{display:grid;place-items:center;background:#8b8b8b;border:3px solid #373737;border-right-color:#fff;border-bottom-color:#fff;color:#1f1f1f;font-size:13px;font-weight:700;text-align:center;line-height:1.2}
+    .craft h3{font-size:26px;margin-bottom:8px}
+    .craft p{color:var(--muted);margin:0 0 8px}
+
+    .install{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+    .install>*{min-width:0}
+    .steps{counter-reset:step;display:grid;gap:12px}
+    .step{counter-increment:step;display:grid;grid-template-columns:42px 1fr;gap:12px;padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+    .step:before{content:counter(step,decimal-leading-zero);font-family:var(--pixel);font-size:10px;color:var(--sage);padding-top:6px}
+    .step strong{display:block}
+    .step span{color:var(--muted);font-size:15px}
+    .requirements{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);font-size:15px}
+    .requirements th,.requirements td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--line)}
+    .requirements th{color:var(--muted);background:var(--surface-2)}
+    .requirements th:last-child,.requirements td:last-child{text-align:right}
+    .requirements td:last-child{font-weight:700;color:var(--accent)}
+    .requirements tr:last-child td{border-bottom:0}
+    .note{margin-top:16px;padding:14px 16px;border-left:4px solid var(--sage);background:var(--surface-2);color:var(--muted);font-size:15px}
+    pre.code{margin:16px 0 0;padding:16px;background:var(--forest-deep);color:#dfe4d0;font-size:13px;overflow-x:auto}
+
+    .download{padding:44px;border-radius:10px;background:var(--forest);color:var(--ivory);display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .download h2{font-size:30px;margin:0 0 8px}
+    .download p{color:#cfd6bd;margin:0}
+    .download-actions{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0}
+
+    .faq{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+    .faq details{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 20px}
+    .faq summary{cursor:pointer;font-weight:700}
+    .faq p{margin:10px 0 0;color:var(--muted);font-size:16px}
+
+    footer{background:var(--forest-deep);color:#b9c3a6;padding:28px 0;font-size:14px}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .footer-links{display:flex;gap:20px}
+    .footer-links a:hover{color:#fff}
+
+    @media(max-width:820px){
+      .hero{padding-top:60px}.hero-inner{grid-template-columns:1fr;gap:36px;padding-bottom:56px}
+      .navlinks{display:none}.install,.faq,.range-panel,.craft{grid-template-columns:1fr}
+      .download{display:block;padding:28px}.download-actions{margin-top:20px}
+      .stats-grid{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:0}
+      section.content{padding:58px 0}.trace li{grid-template-columns:1fr;gap:4px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
   </style>
 </head>
 <body>
+  <a class="skip" href="#what-g-does">Skip to content</a>
   <header class="topbar"><div class="wrap nav">
-    <a class="brand" href="#top" aria-label="Pawcall home"><span class="brand-mark">P</span><span>PAWCALL</span></a>
-    <nav class="navlinks" aria-label="Main navigation"><a href="#features">Features</a><a href="#how-it-works">How it works</a><a href="#install">Installation</a><a href="#faq">FAQ</a></nav>
-    <a class="nav-cta" href="https://github.com/Shahisha1/Pawcall">VIEW SOURCE ↗</a>
+    <a class="brand" href="#top" aria-label="Pawcall home"><img src="assets/whistle.png" alt="" width="30" height="30"><span>Pawcall</span></a>
+    <nav class="navlinks" aria-label="Main navigation"><a href="#what-g-does">What G does</a><a href="#ranges">Ranges</a><a href="#crafting">Whistle recipe</a><a href="#install">Install</a><a href="#faq">FAQ</a></nav>
+    <a class="button small" href="https://github.com/Shahisha1/Pawcall">Source on GitHub ↗</a>
   </div></header>
+
   <main id="top">
-    <section class="hero"><div class="wrap hero-inner"><div>
-      <span class="eyebrow">A small mod for your big adventures</span>
-      <h1>YOUR PETS.<br>YOUR CALL.</h1>
-      <p class="hero-copy">A familiar whistle, and your tamed companions start making their way back to you. <strong>No teleporting. No lost sidekicks.</strong> Just a better way to keep your crew together.</p>
-      <div class="actions"><a class="button" href="#install">GET STARTED <span aria-hidden="true">→</span></a><a class="button secondary" href="https://github.com/Shahisha1/Pawcall">EXPLORE ON GITHUB ↗</a></div>
-      <p class="micro">A free, open-source Fabric mod for Minecraft 26.3.</p>
-    </div><div class="pixel-scene" aria-label="Pixel-art scene showing a pet and a golden whistle"><div class="scene-card">
-      <div class="scene-top"><span>FIELD NOTES / 001</span><span>COMPANION FOUND</span></div><div class="scene-art"><span class="sun"></span><div class="pet"><i></i><b></b></div><div class="whistle"></div><span class="grass"></span></div>
-      <div class="scene-caption"><span>YOUR COMPANION IS ON THE WAY</span><b>+48 BLOCKS</b></div>
-    </div></div></div></section>
-    <div class="stats"><div class="wrap stats-grid"><div class="stat"><strong>12</strong><span>Block quick-call range</span></div><div class="stat"><strong>48</strong><span>Block whistle range</span></div><div class="stat"><strong>0</strong><span>Teleporting involved</span></div></div></div>
-    <section class="content" id="features"><div class="wrap">
-      <div class="section-head"><span class="eyebrow">Built for the whole crew</span><h2>Bring your companions closer.</h2><p>Whether you're heading home or exploring somewhere new, Pawcall makes it easier to regroup without changing how your pets move through the world.</p></div>
-      <div class="cards"><article class="card"><div class="card-number">01 / CALL</div><h3>They come running</h3><p>Eligible pets navigate toward your position using their normal pathfinding. They are not teleported to you.</p></article><article class="card"><div class="card-number">02 / RANGE</div><h3>Reach a little farther</h3><p>Use the quick call nearby, or hold the Pawcall whistle to call companions from up to 48 blocks away.</p></article><article class="card"><div class="card-number">03 / CARE</div><h3>Let resting pets rest</h3><p>Pets ordered to sit stay where they are. Only tamed animals owned by you respond to your call.</p></article></div>
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div>
+          <span class="eyebrow">Fabric mod · Minecraft 26.3</span>
+          <h1>Your pets.<br><em>Your call.</em></h1>
+          <p class="lead">Wolf wandered off again? Press <strong>G</strong> and every tamed pet you own starts walking back to you. <strong>They run over. They never teleport.</strong></p>
+          <div class="actions"><a class="button" href="https://www.curseforge.com/minecraft/mc-mods/pawcall">Download on CurseForge ↗</a><a class="button secondary" href="#install">Install guide</a></div>
+          <p class="micro">Free, open source, MIT licensed.</p>
+        </div>
+        <div class="scene" role="img" aria-label="Three pixel-art pets walking toward the player, who holds the Pawcall whistle. Below, the in-game message: Pawcall! 3 pets are on the way, range 48.">
+          <div class="scene-art">
+            <span class="sun"></span><span class="hill"></span><span class="trail"></span>
+            <div class="pet p1"><i></i></div><div class="pet p2"><i></i></div><div class="pet p3"><i></i></div>
+            <img class="hand" src="assets/whistle.png" alt="">
+            <span class="turf"></span>
+          </div>
+          <div class="actionbar">Pawcall! <span>3 pets are on the way</span> (range 48)</div>
+        </div>
+      </div>
+      <div class="grass" aria-hidden="true"></div>
+    </section>
+
+    <div class="stats"><div class="wrap stats-grid">
+      <div class="stat"><strong>12</strong><span>blocks, any item or bare hand</span></div>
+      <div class="stat"><strong>48</strong><span>blocks, whistle in either hand</span></div>
+      <div class="stat"><strong>1 sec</strong><span>cooldown between calls</span></div>
+    </div></div>
+
+    <section class="content" id="what-g-does"><div class="wrap">
+      <div class="section-head"><span class="eyebrow">Under the hood</span><h2>What the G key actually does</h2><p>No magic. Here is the whole sequence, straight from the mod's code.</p></div>
+      <ol class="trace">
+        <li><span class="n">01</span><div><h3>Finds your pets</h3><p>Scans a box around you for tamed animals that you own, out to 12 or 48 blocks. Other players' pets are ignored.</p></div></li>
+        <li><span class="n">02</span><div><h3>Skips the sitters</h3><p>Any pet you told to sit stays exactly where it is. Your wolf on guard at the base keeps guarding it.</p></div></li>
+        <li><span class="n">03</span><div><h3>Sends them to you</h3><p>Each remaining pet gets a path to your position and walks it at 1.25× speed. If a pet has no route, it won't arrive. Pawcall never forces it.</p></div></li>
+        <li><span class="n">04</span><div><h3>Tells you how it went</h3><p>You hear a short chime and get a chat line with the pet count. If nobody was in range, it says so.</p></div></li>
+      </ol>
     </div></section>
-    <section class="content" id="how-it-works" style="padding-top:0"><div class="wrap">
-      <div class="section-head"><span class="eyebrow">Two ways to call</span><h2>One key. Two ranges.</h2><p>The default keybind is G. You can change it in Minecraft's Controls menu.</p></div>
-      <div class="range-panel"><div class="range"><span class="range-label">Quick call / Any held item</span><div class="range-value">12 blocks</div><p>Press <span class="key">G</span> with an empty hand or any item. Your nearby eligible pets will start moving toward you.</p></div><div class="range"><span class="range-label">Whistle call / Whistle in either hand</span><div class="range-value">48 blocks</div><p>Hold the crafted Pawcall whistle in your main hand or offhand, then press <span class="key">G</span> to extend your call range.</p></div></div>
+
+    <section class="content tight" id="ranges"><div class="wrap">
+      <div class="section-head"><span class="eyebrow">Two ranges, one key</span><h2>Bare hands for the yard, whistle for the horizon</h2><p>Rebind it under Options, Controls, Key Binds, Pawcall. Right-clicking the whistle also calls.</p></div>
+      <div class="range-panel">
+        <div class="range"><span class="range-label">Quick call · any item</span><div class="range-value">12 blocks</div><p>Press <span class="key">G</span> while holding anything, or nothing. Good for the farm, the base and the village edge.</p></div>
+        <div class="range"><span class="range-label">Whistle call · either hand</span><div class="range-value">48 blocks</div><p>Hold the whistle in your main hand or offhand and press <span class="key">G</span>. Good for the cave you just cleared and the hill they got distracted on.</p></div>
+      </div>
     </div></section>
-    <section class="content" id="install"><div class="wrap">
-      <div class="section-head"><span class="eyebrow">Get it running</span><h2>Installation, without the guesswork.</h2><p>Pawcall is built for Fabric. Make sure your game and dependencies match the versions below.</p></div>
-      <div class="install"><div class="steps"><div class="step"><div><strong>Install Fabric Loader</strong><span>Use the Fabric profile for Minecraft 26.3.</span></div></div><div class="step"><div><strong>Add Fabric API</strong><span>Install Fabric API 0.165.0+26.3 in the same instance.</span></div></div><div class="step"><div><strong>Get the mod JAR</strong><span>Download a published build from Releases when one is available, or build from source.</span></div></div><div class="step"><div><strong>Move it into your mods folder</strong><span>Place the JAR in the mods folder for your Fabric instance, then launch the game.</span></div></div></div>
-      <div><table class="requirements" aria-label="Required versions"><thead><tr><th>Requirement</th><th>Version</th></tr></thead><tbody><tr><td>Minecraft</td><td>26.3</td></tr><tr><td>Fabric Loader</td><td>0.20.1</td></tr><tr><td>Fabric API</td><td>0.165.0+26.3</td></tr><tr><td>Java</td><td>25+</td></tr></tbody></table><div class="note">No published JAR release is assumed here. If the Releases page is empty, use the build-from-source instructions in the repository README.</div></div></div>
+
+    <section class="content tight" id="crafting"><div class="wrap">
+      <div class="craft">
+        <div class="grid" role="img" aria-label="Crafting recipe: iron ingot above a bone"><div class="slot">Iron ingot</div><div class="slot">Bone</div></div>
+        <div><span class="eyebrow">Whistle recipe</span><h3>Iron on top, bone below</h3><p>Two items, one column, one whistle. Skeleton drops and a bit of iron will do.</p><p>Creative players: it's in the Tools &amp; Utilities tab.</p></div>
+      </div>
     </div></section>
-    <section class="content" style="padding-top:0"><div class="wrap"><div class="download"><div><h2>Ready to keep your crew close?</h2><p>Explore the code, report an issue, or check for a downloadable release.</p></div><div class="download-actions"><a class="button" href="https://github.com/Shahisha1/Pawcall/releases">CHECK RELEASES ↗</a><a class="button secondary" href="https://github.com/Shahisha1/Pawcall">VIEW REPOSITORY ↗</a></div></div></div></section>
-    <section class="content" id="faq" style="padding-top:0"><div class="wrap"><div class="section-head"><span class="eyebrow">A few quick answers</span><h2>Good to know.</h2></div><div class="faq">
-      <article><h3>Does it teleport my pets?</h3><p>No. Pets use navigation to travel toward you. They still need a path they can follow.</p></article><article><h3>Which pets respond?</h3><p>Tamed animals owned by you, as long as they are not ordered to sit and are within range.</p></article><article><h3>Can I use the whistle from my offhand?</h3><p>Yes. The extended range activates when the Pawcall whistle is in either your main hand or offhand.</p></article><article><h3>Can I change the keybind?</h3><p>Yes. Open Options, then Controls, then Key Binds. Find the Pawcall binding and assign another key if needed.</p></article>
+
+    <section class="content tight" id="install"><div class="wrap">
+      <div class="section-head"><span class="eyebrow">Install</span><h2>Four steps, versions matter</h2><p>Fabric mods are picky. Match these exactly and it just loads.</p></div>
+      <div class="install">
+        <div class="steps">
+          <div class="step"><div><strong>Install Fabric Loader</strong><span>Use the Fabric profile for Minecraft 26.3.</span></div></div>
+          <div class="step"><div><strong>Add Fabric API</strong><span>Version 0.165.0+26.3, same instance.</span></div></div>
+          <div class="step"><div><strong>Download Pawcall</strong><span>Grab the JAR from CurseForge, or build it from source.</span></div></div>
+          <div class="step"><div><strong>Drop it in <code>mods</code></strong><span>Launch the Fabric profile. On a server, install it on both sides.</span></div></div>
+        </div>
+        <div>
+          <table class="requirements" aria-label="Required versions"><thead><tr><th>Requirement</th><th>Version</th></tr></thead><tbody>
+            <tr><td>Minecraft</td><td>26.3</td></tr><tr><td>Fabric Loader</td><td>0.20.1</td></tr><tr><td>Fabric API</td><td>0.165.0+26.3</td></tr><tr><td>Java</td><td>25+</td></tr>
+          </tbody></table>
+          <div class="note">Building it yourself needs Git and a Java 25 JDK.</div>
+          <pre class="code">git clone https://github.com/Shahisha1/Pawcall.git
+cd Pawcall
+./gradlew build      # Windows: .\gradlew.bat build
+# JAR appears in build/libs/</pre>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="content tight"><div class="wrap"><div class="download">
+      <div><h2>Go find your wolf.</h2><p>Download from CurseForge, read the code, or file a bug.</p></div>
+      <div class="download-actions"><a class="button" href="https://www.curseforge.com/minecraft/mc-mods/pawcall">Download on CurseForge ↗</a><a class="button secondary" href="https://github.com/Shahisha1/Pawcall">GitHub ↗</a></div>
     </div></div></section>
+
+    <section class="content tight" id="faq"><div class="wrap">
+      <div class="section-head"><span class="eyebrow">FAQ</span><h2>Things people ask first</h2></div>
+      <div class="faq">
+        <details open><summary>Do pets teleport to me?</summary><p>No. They walk, so they need a route. A pet on the far side of a ravine or locked in a fenced pen won't make it.</p></details>
+        <details open><summary>Which pets answer?</summary><p>Tamed animals you own that aren't sitting and are within range.</p></details>
+        <details><summary>Can I use the whistle from my offhand?</summary><p>Yes. Either hand extends the range to 48 blocks.</p></details>
+        <details><summary>Can I change the key?</summary><p>Yes: Options, Controls, Key Binds, then look for Call Pets under Pawcall.</p></details>
+        <details><summary>Does it work on servers?</summary><p>Install it on the client and the server. The server handles the call, and the client sends the keypress.</p></details>
+        <details><summary>Why a cooldown?</summary><p>One second between calls stops key-mashing from spamming the server with path requests.</p></details>
+      </div>
+    </div></section>
   </main>
-  <footer><div class="wrap footer-inner"><span>© <span id="year"></span> Pawcall. A little whistle. A long way home.</span><div class="footer-links"><a href="https://github.com/Shahisha1/Pawcall">GitHub</a><a href="https://github.com/Shahisha1/Pawcall/issues">Report an issue</a><a href="https://github.com/Shahisha1/Pawcall/blob/main/LICENSE">MIT License</a></div></div></footer>
+
+  <footer><div class="wrap footer-inner">
+    <span>© <span id="year"></span> Pawcall · MIT License · Not affiliated with Mojang or Microsoft.</span>
+    <div class="footer-links"><a href="https://www.curseforge.com/minecraft/mc-mods/pawcall">CurseForge</a><a href="https://github.com/Shahisha1/Pawcall">GitHub</a><a href="https://github.com/Shahisha1/Pawcall/issues">Report a bug</a></div>
+  </div></footer>
   <script>document.getElementById("year").textContent=new Date().getFullYear();</script>
 </body>
 </html>

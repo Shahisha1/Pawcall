@@ -5,6 +5,7 @@
   <br />
   Call your tamed companions back to you, without teleporting them.
   <br /><br />
+  <a href="https://www.curseforge.com/minecraft/mc-mods/pawcall"><img src="https://img.shields.io/badge/Download-CurseForge-f16436?style=for-the-badge&logo=curseforge&logoColor=white" alt="Download on CurseForge" /></a>
   <a href="https://fabricmc.net/"><img src="https://img.shields.io/badge/Mod%20loader-Fabric-dbd0b4?style=for-the-badge&logo=fabric&logoColor=111111" alt="Fabric" /></a>
   <img src="https://img.shields.io/badge/Minecraft-26.3-4b8b3b?style=for-the-badge&logo=minecraft&logoColor=white" alt="Minecraft 26.3" />
   <img src="https://img.shields.io/badge/Java-25+-e76f00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 25 or newer" />
@@ -34,6 +35,10 @@ Press **G** and nearby pets will make their way over. Hold the crafted Pawcall w
 - **Your pets only.** Only tamed animals owned by the player who called respond.
 - **A little breathing room.** A one-second cooldown prevents repeated calls from firing constantly.
 
+## Crafting the whistle
+
+Place an **iron ingot** above a **bone** in a crafting grid. The whistle also appears in the Tools & Utilities creative tab. Right-clicking it calls your pets too.
+
 ## How to use
 
 1. Install Pawcall in your Fabric Minecraft instance.
@@ -58,7 +63,7 @@ The default key is **G**. You can change it under **Options → Controls → Key
 
 1. Install Fabric Loader for Minecraft 26.3.
 2. Install the matching Fabric API version.
-3. Get the Pawcall JAR from [GitHub Releases](https://github.com/Shahisha1/Pawcall/releases) when a release is available, or [build it yourself](#build-from-source).
+3. Download the Pawcall JAR from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/pawcall) or [GitHub Releases](https://github.com/Shahisha1/Pawcall/releases), or [build it yourself](#build-from-source).
 4. Put the JAR in the `mods` folder of your Minecraft instance.
 5. Launch the Fabric profile and get exploring.
 
@@ -108,6 +113,7 @@ The generated JAR will be in `build/libs/`. Copy it into your Fabric instance's 
 | Project | Pawcall |
 | Mod ID | `pawcall` |
 | Whistle item ID | `pawcall:whistle` |
+| Whistle recipe | Iron ingot above a bone |
 | Default keybind | `G` |
 | Standard range | 12 blocks |
 | Whistle range | 48 blocks |

@@ -36,7 +36,10 @@ public class Pawcall implements ModInitializer {
    pet->pet.isTame()&&pet.isOwnedBy(player)&&!pet.isOrderedToSit()&&pet.distanceToSqr(player)<=rangeSq);
   for(TamableAnimal pet:pets)pet.getNavigation().moveTo(player,PET_APPROACH_SPEED);
   level.playSound(null,player.blockPosition(),SoundEvents.EXPERIENCE_ORB_PICKUP,SoundSource.PLAYERS,1.0f,1.5f);
-  player.sendSystemMessage(Component.literal("Pawcall! "+pets.size()+" pet(s) coming (range "+(int)range+")"));
+  String msg=pets.isEmpty()
+   ?"Pawcall: no pets to call within "+(int)range+" blocks"
+   :"Pawcall! "+pets.size()+(pets.size()==1?" pet is":" pets are")+" on the way (range "+(int)range+")";
+  player.sendSystemMessage(Component.literal(msg));
  }
  private static boolean hasWhistleInHand(ServerPlayer player){
   return player.getMainHandItem().is(ModItems.WHISTLE)||player.getOffhandItem().is(ModItems.WHISTLE);

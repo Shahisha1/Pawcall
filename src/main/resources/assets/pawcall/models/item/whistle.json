@@ -1,4 +1,4 @@
 {
   "parent": "minecraft:item/generated",
-  "textures": { "layer0": "petwhistle:item/whistle" }
+  "textures": { "layer0": "pawcall:item/whistle" }
 }

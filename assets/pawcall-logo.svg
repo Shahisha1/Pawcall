@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" shape-rendering="crispEdges">
+  <title>Pawcall pixel wolf and golden whistle</title>
+  <rect width="512" height="512" fill="#20271f"/>
+  <!-- wolf silhouette -->
+  <path fill="#292927" d="M112 32h64v16h16v64h128V48h16V32h64v16h16v64h16v16h16v176h-16v16h-16v16h-64v16H160v-16H96v-16H80v-16H64V128h16v-16h16V48h16z"/>
+  <!-- ears -->
+  <path fill="#e9e1d4" d="M112 48h64v48h-64zM336 48h64v48h-64z"/>
+  <path fill="#92918d" d="M112 96h64v64h-64zM336 96h64v64h-64z"/>
+  <!-- head -->
+  <rect x="96" y="128" width="320" height="208" fill="#92918d"/>
+  <rect x="80" y="144" width="16" height="176" fill="#555454"/>
+  <rect x="416" y="144" width="16" height="176" fill="#555454"/>
+  <rect x="96" y="128" width="96" height="32" fill="#e9e1d4"/>
+  <rect x="320" y="128" width="96" height="32" fill="#e9e1d4"/>
+  <rect x="192" y="128" width="128" height="32" fill="#b9b8b2"/>
+  <rect x="96" y="160" width="320" height="16" fill="#aaa9a3"/>
+  <!-- eyes -->
+  <rect x="144" y="208" width="48" height="32" fill="#e9e1d4"/>
+  <rect x="144" y="240" width="48" height="48" fill="#252326"/>
+  <rect x="320" y="208" width="48" height="32" fill="#e9e1d4"/>
+  <rect x="320" y="240" width="48" height="48" fill="#252326"/>
+  <!-- cheeks -->
+  <path fill="#927a68" d="M192 240h128v48H192zM96 288h64v48H96zM352 288h64v48h-64z"/>
+  <path fill="#a18a79" d="M144 288h48v48h-48zM320 288h48v48h-48z"/>
+  <path fill="#d5bca9" d="M160 272h48v48h-48zM304 272h48v48h-48z"/>
+  <!-- muzzle -->
+  <path fill="#e9e1d4" d="M176 288h32v-16h96v16h32v64h16v16h-32v16H192v-16h-32v-16h16z"/>
+  <rect x="208" y="320" width="96" height="48" fill="#f0e7da"/>
+  <rect x="224" y="304" width="64" height="48" fill="#252326"/>
+  <!-- neck -->
+  <rect x="176" y="368" width="160" height="32" fill="#292629"/>
+  <rect x="192" y="400" width="128" height="16" fill="#292629"/>
+  <!-- whistle outline and body -->
+  <path fill="#8a590b" d="M160 416h32v-16h32v-16h96v16h48v16h16v32h16v32h-32v16h-32v32H208v-16h-16v-16h-32v-16h-16v-64h16z"/>
+  <path fill="#ffbe20" d="M176 416h32v-16h32v-16h64v16h48v16h16v32h-16v16h-32v32h-16v16h-80v-16h-16v-16h-16v-16h-16v-48z"/>
+  <path fill="#ffce43" d="M224 384h64v16h48v16H224z"/>
+  <path fill="#ffe18a" d="M208 400h32v16h16v16h-16v-16h-32zM208 432h16v32h-16z"/>
+  <!-- whistle loop -->
+  <path fill="#a96808" d="M80 432h64v16h16v32h-16v16H80v-16H64v-32h16z"/>
+  <path fill="#ffbe20" d="M80 448h48v32H80z"/>
+  <rect x="96" y="456" width="16" height="16" fill="#20271f"/>
+  <!-- round whistle detail -->
+  <path fill="#a96808" d="M240 432h32v16h16v48h-16v16h-32v-16h-16v-48h16z"/>
+  <path fill="#ffce43" d="M240 448h32v16h8v32h-8v8h-32v-8h-8v-32h8z"/>
+  <!-- lower shadow -->
+  <rect x="224" y="496" width="64" height="8" fill="#b87908"/>
+</svg>

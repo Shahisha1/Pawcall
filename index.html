@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#263d2d">
   <title>Pawcall — Call your tamed pets in Minecraft</title>
-  <meta name="description" content="Pawcall is a Fabric mod for Minecraft 26.3. Press G to call nearby owned, tamed pets, or use the whistle for a 48-block range.">
+  <meta name="description" content="Pawcall is a Fabric mod for Minecraft 26.3. Press G to call nearby owned, tamed pets, or use the whistle for a 96-block range.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Pawcall">
   <meta property="og:title" content="Pawcall — Call your tamed pets in Minecraft">
-  <meta property="og:description" content="A Fabric mod that calls nearby owned, tamed pets using their normal navigation. 12-block quick call, 48-block whistle range.">
+  <meta property="og:description" content="A Fabric mod that calls nearby owned, tamed pets using their normal navigation. 12-block quick call, 96-block whistle range.">
   <meta property="og:image" content="assets/og-image.png">
   <meta property="og:image:alt" content="Pawcall pixel-art whistle and wordmark">
   <meta name="twitter:card" content="summary_large_image">
@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&family=Nunito+Sans:wght@400;500;600;700;800&family=Pixelify+Sans:wght@500;600;700&display=swap" rel="stylesheet">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Pawcall","applicationCategory":"GameApplication","operatingSystem":"Minecraft Java Edition with Fabric","description":"A Fabric mod that calls nearby owned, tamed pets using normal navigation. 12-block quick call and 48-block whistle range.","license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://www.curseforge.com/minecraft/mc-mods/pawcall","codeRepository":"https://github.com/Shahisha1/Pawcall"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Pawcall","applicationCategory":"GameApplication","operatingSystem":"Minecraft Java Edition with Fabric","description":"A Fabric mod that calls nearby owned, tamed pets using normal navigation. 12-block quick call and 96-block whistle range.","license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://www.curseforge.com/minecraft/mc-mods/pawcall","codeRepository":"https://github.com/Shahisha1/Pawcall"}</script>
   <style>
     :root{
       color-scheme:light;
@@ -419,7 +419,7 @@
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <h1>Call your tamed pets in Minecraft.</h1>
-          <p class="hero-intro">Call your owned, tamed pets from up to 12 blocks away. Equip the whistle to extend the range to 48.</p>
+          <p class="hero-intro">Call your owned, tamed pets from up to 12 blocks away. Hold the Pawcall whistle in either hand to extend the range to 96 blocks.</p>
           <div class="hero-actions">
             <a class="uiverse-download" href="https://www.curseforge.com/minecraft/mc-mods/pawcall" target="_blank" rel="noopener" aria-label="Download Pawcall on CurseForge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M5 17v3h14v-3"/></svg>
@@ -438,7 +438,7 @@
           <p class="api-note">Requires Fabric API 0.165.0+26.3. All listed versions must match your Minecraft instance.</p>
         </div>
         <figure class="call-scene" aria-labelledby="scene-caption">
-          <div class="scene-top"><span>PAWCALL / FIELD TEST</span><span>12 → 48 BLOCKS</span></div>
+          <div class="scene-top"><span>PAWCALL / FIELD TEST</span><span>12 → 96 BLOCKS</span></div>
           <svg class="scene-art" viewBox="0 0 560 390" role="img" aria-label="Pixel-art illustration of a player using a whistle while a wolf and cat turn toward them">
             <defs>
               <pattern id="grass" width="32" height="32" patternUnits="userSpaceOnUse"><rect width="32" height="32" fill="#547d43"/><rect width="16" height="8" fill="#6e9950"/><rect x="20" y="17" width="8" height="8" fill="#426b38"/></pattern>
@@ -494,14 +494,14 @@
           <article class="mode mode-featured">
             <div class="mode-top"><span class="mode-tag">EXTENDED RANGE</span></div>
             <h3>Whistle call</h3>
-            <p class="mode-range">48 <small>blocks</small></p>
+            <p class="mode-range">96 <small>blocks</small></p>
             <dl>
               <div><dt>Trigger</dt><dd>Press <kbd>G</kbd> or right-click the whistle</dd></div>
               <div><dt>Held item</dt><dd>Pawcall whistle in either hand</dd></div>
             </dl>
           </article>
         </div>
-        <p class="range-footnote">Ranges are measured from the player. A one-second cooldown applies to calls.</p>
+        <p class="range-footnote">Ranges are measured from the player. Calls share a one-second cooldown. The whistle range is capped at 128 blocks if adjusted in the source.</p>
       </div>
     </section>
 
@@ -509,7 +509,7 @@
       <div class="wrap behaviour-layout">
         <div>
           <h2>What happens after you call?</h2>
-          <p>Calls select your owned, tamed <code>TamableAnimal</code> pets. Sitting pets are left alone.</p>
+          <p>Calls select your owned, tamed <code>TamableAnimal</code> pets in your current dimension. Sitting pets are left alone.</p>
         </div>
         <div class="behaviour-facts">
           <article><div><h3>They walk to you</h3><p>Pets use their normal navigation; Pawcall does not teleport them.</p></div></article>
@@ -579,6 +579,9 @@
         <div><h2>Things to know.</h2></div>
         <div class="faq-list">
           <details><summary>Which animals are supported?</summary><p>The implementation queries Minecraft's <code>TamableAnimal</code> type and checks ownership. Wolves and cats are examples. It does not simply call every animal in the world; other mobs are included only if they use that entity type and ownership behaviour.</p></details>
+          <details><summary>Why didn't a pet respond?</summary><p>The pet must be tamed, owned by you, within range, in the same dimension, and not ordered to sit. It also needs a usable path through the loaded world. Pawcall never teleports pets or force-loads distant chunks.</p></details>
+          <details><summary>Can I call pets repeatedly?</summary><p>Calls share a one-second cooldown. The mod also avoids resetting a pet's navigation when it already has an active path.</p></details>
+          <details><summary>What does the whistle change?</summary><p>Hold the Pawcall whistle in either hand and press <kbd>G</kbd>, or right-click it, to use the extended 96-block range. Without the whistle, the quick call reaches 12 blocks.</p></details>
         </div>
       </div>
     </section>
@@ -597,7 +600,7 @@
   <footer class="footer">
     <div class="wrap footer-inner">
       <a class="footer-brand" href="#"><img src="assets/whistle.png" alt="">pawcall</a>
-      <span class="footer-note">FABRIC MOD · MINECRAFT JAVA 26.3</span>
+      <span class="footer-note">FABRIC MOD · MINECRAFT JAVA 26.3 · WHISTLE RANGE 96 BLOCKS</span>
       <nav class="footer-links" aria-label="Footer links">
         <a href="https://github.com/Shahisha1/Pawcall" target="_blank" rel="noopener">GitHub</a>
         <a href="https://github.com/Shahisha1/Pawcall/issues" target="_blank" rel="noopener">Issues</a>
@@ -609,15 +612,27 @@
   <script>
     const menuButton = document.querySelector(".menu");
     const navigation = document.querySelector("#navlinks");
+
+    const setMenuOpen = (open) => {
+      menuButton.setAttribute("aria-expanded", String(open));
+      menuButton.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+      navigation.classList.toggle("open", open);
+    };
+
     menuButton.addEventListener("click", () => {
-      const expanded = menuButton.getAttribute("aria-expanded") === "true";
-      menuButton.setAttribute("aria-expanded", String(!expanded));
-      navigation.classList.toggle("open", !expanded);
+      setMenuOpen(menuButton.getAttribute("aria-expanded") !== "true");
     });
-    navigation.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
-      navigation.classList.remove("open");
-      menuButton.setAttribute("aria-expanded", "false");
-    }));
+
+    navigation.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setMenuOpen(false));
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") {
+        setMenuOpen(false);
+        menuButton.focus();
+      }
+    });
 
   </script>
 </body>

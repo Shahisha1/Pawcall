@@ -11,7 +11,7 @@
     "issues": "https://github.com/Shahisha1/Pawcall/issues"
   },
   "license": "MIT",
-  "icon": "assets/pawcall/textures/item/whistle.png",
+  "icon": "assets/pawcall/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": ["com.example.pawcall.Pawcall"],

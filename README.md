@@ -1,5 +1,12 @@
 # Pawcall
 
+[![License: MIT](https://img.shields.io/github/license/Shahisha1/Pawcall?style=for-the-badge)](LICENSE)
+[![Minecraft](https://img.shields.io/badge/Minecraft-26.3-4b7a2d?style=for-the-badge)](https://www.curseforge.com/minecraft/mc-mods/pawcall)
+[![Fabric Loader](https://img.shields.io/badge/Fabric%20Loader-0.20.1-8e7cf5?style=for-the-badge)](https://fabricmc.net/use/)
+[![Java](https://img.shields.io/badge/Java-25-007396?style=for-the-badge)](https://adoptium.net/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Pawcall-181717?style=for-the-badge&logo=github)](https://github.com/Shahisha1/Pawcall)
+[![Issues](https://img.shields.io/github/issues/Shahisha1/Pawcall?style=for-the-badge)](https://github.com/Shahisha1/Pawcall/issues)
+
 **Pawcall is a Fabric mod for Minecraft Java Edition that calls nearby tamed pets you own.** Press `G` for a 12-block call, or hold the Pawcall whistle in either hand for a 96-block call. Pets move toward you using normal navigation; they are not teleported.
 
 [**Download on CurseForge**](https://www.curseforge.com/minecraft/mc-mods/pawcall) · [Source code](https://github.com/Shahisha1/Pawcall) · [Report a bug](https://github.com/Shahisha1/Pawcall/issues)
@@ -24,8 +31,6 @@ Use these versions together. Pawcall's current build targets Minecraft 26.3.
 | Direct whistle use | Right-click the whistle | **96 blocks** | Yes |
 
 The default key is `G`. Change it under **Options → Controls → Key Binds**. Calls share a one-second (20-tick) cooldown. Calls made during the cooldown are ignored.
-
-The whistle range is a named constant in `Pawcall.java`: `WHISTLE_RANGE` defaults to 96 blocks, with `MAX_WHISTLE_RANGE` set to 128 as a safety ceiling. There is no in-game configuration system yet; change the constant and rebuild to adjust the default. The 12-block quick-call range is `BASE_RANGE`.
 
 ## Which pets respond?
 
@@ -101,26 +106,6 @@ To launch the development client:
 ```bash
 ./gradlew runClient
 ```
-
-## Project details
-
-| Detail | Value |
-| :--- | :--- |
-| Mod ID | `pawcall` |
-| Whistle item ID | `pawcall:whistle` |
-| Default keybind | `G` |
-| Quick-call range | 12 blocks |
-| Whistle-call range | 96 blocks (maximum 128) |
-| Cooldown | 20 ticks (1 second) |
-| License | MIT |
-
-## Publishing releases
-
-Publishing a GitHub Release also builds the mod with Java 25, attaches the distributable JAR to that release, and uploads the same JAR to the Pawcall CurseForge project. The workflow uses the repository secret `CURSEFORGE_API_TOKEN`; never commit the token to the repository.
-
-To publish a version, create a Git tag such as `v1.1.0`, then create and publish a GitHub Release for that tag with release notes. The GitHub Actions workflow handles the build and CurseForge upload. You can also run **Build and publish Pawcall** manually from the Actions tab by supplying a version, changelog, and CurseForge release channel.
-
-The CurseForge project ID is `1774134`. CurseForge may review uploaded files before they become publicly available.
 
 ## Contributing
 

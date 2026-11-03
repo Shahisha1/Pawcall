@@ -130,7 +130,7 @@ jobs:
 
           curl --fail-with-body --show-error --silent \
             -H "X-Api-Token: $CURSEFORGE_API_TOKEN" \
-            -F "metadata=@curseforge-metadata.json;type=application/json" \
+            -F "metadata=$(cat curseforge-metadata.json)" \
             -F "file=@$JAR_PATH" \
             "https://minecraft.curseforge.com/api/projects/$CURSEFORGE_PROJECT_ID/upload-file"
 

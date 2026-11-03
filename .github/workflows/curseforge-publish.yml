@@ -115,16 +115,29 @@ jobs:
             exit 1
           fi
 
+          GAME_VERSIONS="$(curl --fail-with-body --show-error --silent \
+            -H "x-api-key: $CURSEFORGE_API_TOKEN" \
+            "https://api.curseforge.com/v2/games/432/versions")"
+          MINECRAFT_VERSION_ID="$(jq -er \
+            --arg version "26.3" \
+            '[.data[].versions[] | select(.name == $version) | .id] | first // error("Minecraft version 26.3 not found")' \
+            <<< "$GAME_VERSIONS")"
+          FABRIC_VERSION_ID="$(jq -er \
+            '[.data[].versions[] | select(.name == "Fabric") | .id] | first // error("Fabric version not found")' \
+            <<< "$GAME_VERSIONS")"
+
           jq -n \
             --arg displayName "Pawcall $VERSION - Minecraft 26.3 Fabric" \
             --arg changelog "$CHANGELOG" \
             --arg releaseType "$RELEASE_TYPE" \
+            --argjson minecraftVersionId "$MINECRAFT_VERSION_ID" \
+            --argjson fabricVersionId "$FABRIC_VERSION_ID" \
             '{
               displayName: $displayName,
               changelog: $changelog,
               changelogType: "markdown",
               releaseType: $releaseType,
-              gameVersions: ["26.3", "Fabric"],
+              gameVersions: [$minecraftVersionId, $fabricVersionId],
               isMarkedForManualRelease: false
             }' > curseforge-metadata.json
 

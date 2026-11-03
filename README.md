@@ -1,6 +1,6 @@
 # Pawcall
 
-**Pawcall is a Fabric mod for Minecraft Java Edition that calls nearby tamed pets you own.** Press `G` for a 12-block call, or hold the Pawcall whistle in either hand for a 48-block call. Pets move toward you using normal navigation; they are not teleported.
+**Pawcall is a Fabric mod for Minecraft Java Edition that calls nearby tamed pets you own.** Press `G` for a 12-block call, or hold the Pawcall whistle in either hand for a 96-block call. Pets move toward you using normal navigation; they are not teleported.
 
 [**Download on CurseForge**](https://www.curseforge.com/minecraft/mc-mods/pawcall) · [Source code](https://github.com/Shahisha1/Pawcall) · [Report a bug](https://github.com/Shahisha1/Pawcall/issues)
 
@@ -20,27 +20,28 @@ Use these versions together. Pawcall's current build targets Minecraft 26.3.
 | Mode | Trigger | Range | Whistle required? |
 | :--- | :--- | :---: | :---: |
 | Quick call | Press `G` | **12 blocks** | No |
-| Whistle call | Press `G` while holding the whistle in either hand | **48 blocks** | Yes |
-| Direct whistle use | Right-click the whistle | **48 blocks** | Yes |
+| Whistle call | Press `G` while holding the whistle in either hand | **96 blocks** | Yes |
+| Direct whistle use | Right-click the whistle | **96 blocks** | Yes |
 
-The default key is `G`. Change it under **Options → Controls → Key Binds**. Calls share a one-second cooldown.
+The default key is `G`. Change it under **Options → Controls → Key Binds**. Calls share a one-second (20-tick) cooldown. Calls made during the cooldown are ignored.
+
+The whistle range is a named constant in `Pawcall.java`: `WHISTLE_RANGE` defaults to 96 blocks, with `MAX_WHISTLE_RANGE` set to 128 as a safety ceiling. There is no in-game configuration system yet; change the constant and rebuild to adjust the default. The 12-block quick-call range is `BASE_RANGE`.
 
 ## Which pets respond?
 
 Pawcall searches for Minecraft `TamableAnimal` entities that:
 
-- Are tamed.
-- Are owned by the player making the call.
+- Are tamed and owned by the player making the call.
 - Are within the selected range in the player's current dimension.
 - Have not been ordered to sit.
 
-Wolves and cats are familiar examples of this entity type. Pawcall does not call every animal in the world, untamed animals, another player's pets, or pets sitting in place.
+Only entities already present in the player's current server level are considered. Pawcall does not force-load chunks or search other dimensions. Pets in another dimension, outside loaded areas, sitting, or otherwise unreachable may not respond.
 
 ## How pet movement works
 
-Pawcall asks each matching pet's navigation system to move toward the player at movement speed **1.25**. It does not teleport pets.
+Pawcall asks each matching pet's navigation system to move toward the player at movement speed **1.25**. It never teleports pets. Existing navigation is left alone on subsequent calls, avoiding repeated path resets.
 
-This is a movement request, not a guarantee that every pet will arrive. Terrain, walls, hazards, an unreachable route, or other in-game conditions can prevent pathfinding from completing.
+Terrain, walls, hazards, unloaded areas, or an unreachable route can prevent a pet from arriving. Sitting pets remain sitting. The mod reports when no eligible pets are in range and plays a short existing Minecraft sound when at least one eligible pet is called.
 
 ## Crafting the whistle
 
@@ -109,7 +110,7 @@ To launch the development client:
 | Whistle item ID | `pawcall:whistle` |
 | Default keybind | `G` |
 | Quick-call range | 12 blocks |
-| Whistle-call range | 48 blocks |
+| Whistle-call range | 96 blocks (maximum 128) |
 | Cooldown | 20 ticks (1 second) |
 | License | MIT |
 

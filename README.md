@@ -1,7 +1,7 @@
 # Pawcall
 
 <p align="center">
-  <img src="assets/pawcall-logo.svg" alt="Pawcall pixel-art wolf and golden whistle logo" width="220">
+  <img src="assets/pawcall-logo.png" alt="Pawcall pixel-art wolf and golden whistle logo" width="220">
 </p>
 
 [![License: MIT](https://img.shields.io/github/license/Shahisha1/Pawcall?style=for-the-badge)](LICENSE)

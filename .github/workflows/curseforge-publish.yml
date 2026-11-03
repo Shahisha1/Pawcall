@@ -124,7 +124,7 @@ jobs:
               changelog: $changelog,
               changelogType: "markdown",
               releaseType: $releaseType,
-              gameVersionNames: ["26.3", "Fabric"],
+              gameVersions: ["26.3", "Fabric"],
               isMarkedForManualRelease: false
             }' > curseforge-metadata.json
 

@@ -3,7 +3,7 @@
   "id": "pawcall",
   "version": "${version}",
   "name": "Pawcall",
-  "description": "Call your tamed pets back to you. Quick calls reach 12 blocks; hold the Pawcall whistle to reach 48.",
+  "description": "Call your tamed pets back to you. Quick calls reach 12 blocks; hold the Pawcall whistle to reach 96.",
   "authors": ["Shahisha1"],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/pawcall",

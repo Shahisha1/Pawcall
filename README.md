@@ -114,6 +114,14 @@ To launch the development client:
 | Cooldown | 20 ticks (1 second) |
 | License | MIT |
 
+## Publishing releases
+
+Publishing a GitHub Release also builds the mod with Java 25, attaches the distributable JAR to that release, and uploads the same JAR to the Pawcall CurseForge project. The workflow uses the repository secret `CURSEFORGE_API_TOKEN`; never commit the token to the repository.
+
+To publish a version, create a Git tag such as `v1.1.0`, then create and publish a GitHub Release for that tag with release notes. The GitHub Actions workflow handles the build and CurseForge upload. You can also run **Build and publish Pawcall** manually from the Actions tab by supplying a version, changelog, and CurseForge release channel.
+
+The CurseForge project ID is `1774134`. CurseForge may review uploaded files before they become publicly available.
+
 ## Contributing
 
 Bug reports and contributions are welcome. Include your Minecraft, Fabric Loader, Fabric API and Java versions, relevant logs, and steps to reproduce the issue.

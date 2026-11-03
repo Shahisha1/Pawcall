@@ -1,5 +1,9 @@
 # Pawcall
 
+<p align="center">
+  <img src="assets/pawcall-logo.svg" alt="Pawcall pixel-art wolf and golden whistle logo" width="220">
+</p>
+
 [![License: MIT](https://img.shields.io/github/license/Shahisha1/Pawcall?style=for-the-badge)](LICENSE)
 [![Minecraft](https://img.shields.io/badge/Minecraft-26.3-4b7a2d?style=for-the-badge)](https://www.curseforge.com/minecraft/mc-mods/pawcall)
 [![Fabric Loader](https://img.shields.io/badge/Fabric%20Loader-0.20.1-8e7cf5?style=for-the-badge)](https://fabricmc.net/use/)

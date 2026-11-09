@@ -128,6 +128,7 @@ jobs:
       - name: Upload JAR to CurseForge
         env:
           CURSEFORGE_API_TOKEN: ${{ secrets.CURSEFORGE_API_TOKEN }}
+          CURSEFORGE_CORE_API_KEY: ${{ secrets.CURSEFORGE_CORE_API_KEY || '' }}
           CURSEFORGE_PROJECT_ID: ${{ vars.CURSEFORGE_PROJECT_ID || '1774134' }}
           CURSEFORGE_MINECRAFT_VERSION_ID: ${{ vars.CURSEFORGE_MINECRAFT_VERSION_ID || '' }}
           CURSEFORGE_FABRIC_VERSION_ID: ${{ vars.CURSEFORGE_FABRIC_VERSION_ID || '' }}
@@ -146,11 +147,12 @@ jobs:
 
           MINECRAFT_VERSION_ID="${CURSEFORGE_MINECRAFT_VERSION_ID:-}"
           FABRIC_VERSION_ID="${CURSEFORGE_FABRIC_VERSION_ID:-}"
+          LOOKUP_KEY="${CURSEFORGE_CORE_API_KEY:-$CURSEFORGE_API_TOKEN}"
 
           if [[ -z "$MINECRAFT_VERSION_ID" || -z "$FABRIC_VERSION_ID" ]]; then
             echo "Resolving CurseForge game version IDs for Minecraft 26.3 / Fabric..."
             GAME_VERSIONS=""
-            for auth_header in "x-api-key: $CURSEFORGE_API_TOKEN" "X-Api-Token: $CURSEFORGE_API_TOKEN"; do
+            for auth_header in "x-api-key: $LOOKUP_KEY" "X-Api-Token: $LOOKUP_KEY"; do
               if GAME_VERSIONS="$(curl --fail --show-error --silent \
                 -H "$auth_header" \
                 "https://api.curseforge.com/v2/games/432/versions")"; then
@@ -161,10 +163,12 @@ jobs:
 
             if [[ -z "$GAME_VERSIONS" ]]; then
               echo "Could not resolve CurseForge game version IDs (HTTP error from the versions API)." >&2
-              echo "If your token is a project upload token (not a CurseForge Core API key), set repository variables in GitHub Actions:" >&2
-              echo "  CURSEFORGE_MINECRAFT_VERSION_ID = numeric ID for Minecraft 26.3" >&2
-              echo "  CURSEFORGE_FABRIC_VERSION_ID   = numeric ID for Fabric" >&2
-              echo "You can also create a CurseForge Core API key at https://console.curseforge.com/ and use it as CURSEFORGE_API_TOKEN if you want automatic version lookup." >&2
+              echo "Options:" >&2
+              echo "  1) Add repository variables (Actions > Variables) with numeric IDs:" >&2
+              echo "     CURSEFORGE_MINECRAFT_VERSION_ID = numeric ID for Minecraft 26.3" >&2
+              echo "     CURSEFORGE_FABRIC_VERSION_ID   = numeric ID for Fabric" >&2
+              echo "  2) Add a CurseForge Core API key (https://console.curseforge.com/) as secret CURSEFORGE_CORE_API_KEY for automatic lookup." >&2
+              echo "     Keep CURSEFORGE_API_TOKEN as the project upload token if that is what CurseForge upload requires." >&2
               exit 1
             fi
 

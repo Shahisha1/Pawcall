@@ -129,6 +129,8 @@ jobs:
         env:
           CURSEFORGE_API_TOKEN: ${{ secrets.CURSEFORGE_API_TOKEN }}
           CURSEFORGE_PROJECT_ID: ${{ vars.CURSEFORGE_PROJECT_ID || '1774134' }}
+          CURSEFORGE_MINECRAFT_VERSION_ID: ${{ vars.CURSEFORGE_MINECRAFT_VERSION_ID || '' }}
+          CURSEFORGE_FABRIC_VERSION_ID: ${{ vars.CURSEFORGE_FABRIC_VERSION_ID || '' }}
           VERSION: ${{ steps.release.outputs.version }}
           RELEASE_TYPE: ${{ steps.release.outputs.release_type }}
           CHANGELOG: ${{ steps.release.outputs.changelog }}
@@ -142,18 +144,43 @@ jobs:
             exit 1
           fi
 
-          echo "Resolving CurseForge game version IDs for Minecraft 26.3 / Fabric..."
-          GAME_VERSIONS="$(curl --fail-with-body --show-error --silent \
-            -H "x-api-key: $CURSEFORGE_API_TOKEN" \
-            "https://api.curseforge.com/v2/games/432/versions")"
+          MINECRAFT_VERSION_ID="${CURSEFORGE_MINECRAFT_VERSION_ID:-}"
+          FABRIC_VERSION_ID="${CURSEFORGE_FABRIC_VERSION_ID:-}"
 
-          MINECRAFT_VERSION_ID="$(jq -er \
-            --arg version "26.3" \
-            '[.data[].versions[] | select(.name == $version) | .id] | first // error("Minecraft version 26.3 not found in CurseForge game versions")' \
-            <<< "$GAME_VERSIONS")"
-          FABRIC_VERSION_ID="$(jq -er \
-            '[.data[].versions[] | select(.name == "Fabric") | .id] | first // error("Fabric version not found in CurseForge game versions")' \
-            <<< "$GAME_VERSIONS")"
+          if [[ -z "$MINECRAFT_VERSION_ID" || -z "$FABRIC_VERSION_ID" ]]; then
+            echo "Resolving CurseForge game version IDs for Minecraft 26.3 / Fabric..."
+            GAME_VERSIONS=""
+            for auth_header in "x-api-key: $CURSEFORGE_API_TOKEN" "X-Api-Token: $CURSEFORGE_API_TOKEN"; do
+              if GAME_VERSIONS="$(curl --fail --show-error --silent \
+                -H "$auth_header" \
+                "https://api.curseforge.com/v2/games/432/versions")"; then
+                break
+              fi
+              GAME_VERSIONS=""
+            done
+
+            if [[ -z "$GAME_VERSIONS" ]]; then
+              echo "Could not resolve CurseForge game version IDs (HTTP error from the versions API)." >&2
+              echo "If your token is a project upload token (not a CurseForge Core API key), set repository variables in GitHub Actions:" >&2
+              echo "  CURSEFORGE_MINECRAFT_VERSION_ID = numeric ID for Minecraft 26.3" >&2
+              echo "  CURSEFORGE_FABRIC_VERSION_ID   = numeric ID for Fabric" >&2
+              echo "You can also create a CurseForge Core API key at https://console.curseforge.com/ and use it as CURSEFORGE_API_TOKEN if you want automatic version lookup." >&2
+              exit 1
+            fi
+
+            MINECRAFT_VERSION_ID="$(jq -er \
+              --arg version "26.3" \
+              '[.data[].versions[] | select(.name == $version) | .id] | first // empty' \
+              <<< "$GAME_VERSIONS")"
+            FABRIC_VERSION_ID="$(jq -er \
+              '[.data[].versions[] | select(.name == "Fabric") | .id] | first // empty' \
+              <<< "$GAME_VERSIONS")"
+          fi
+
+          if [[ -z "$MINECRAFT_VERSION_ID" || -z "$FABRIC_VERSION_ID" ]]; then
+            echo "Failed to determine CurseForge version IDs (Minecraft='$MINECRAFT_VERSION_ID', Fabric='$FABRIC_VERSION_ID')." >&2
+            exit 1
+          fi
 
           jq -n \
             --arg displayName "Pawcall $VERSION - Minecraft 26.3 Fabric" \
@@ -170,7 +197,7 @@ jobs:
               isMarkedForManualRelease: false
             }' > curseforge-metadata.json
 
-          echo "Uploading $JAR_PATH to CurseForge project $CURSEFORGE_PROJECT_ID..."
+          echo "Uploading $JAR_PATH to CurseForge project $CURSEFORGE_PROJECT_ID (MC=$MINECRAFT_VERSION_ID, Fabric=$FABRIC_VERSION_ID)..."
           curl --fail-with-body --show-error --silent \
             -H "X-Api-Token: $CURSEFORGE_API_TOKEN" \
             -F "metadata=$(cat curseforge-metadata.json)" \

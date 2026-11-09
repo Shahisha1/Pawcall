@@ -136,9 +136,9 @@ jobs:
           changelog: ${{ steps.release.outputs.changelog }}
           changelog_type: markdown
           release_type: ${{ steps.release.outputs.release_type }}
-          # Numeric IDs avoid name/ambiguity issues (17046=MC 26.3, 7499=Fabric, 14454=Java 25, 9638=Client, 9639=Server).
+          # Numeric IDs avoid name/ambiguity issues (17045=MC 26.3, 7499=Fabric, 14454=Java 25, 9638=Client, 9639=Server).
           # Override with Actions variable CURSEFORGE_GAME_VERSIONS if any ID differs for your project.
-          game_versions: ${{ vars.CURSEFORGE_GAME_VERSIONS || '17046,7499,14454,9638,9639' }}
+          game_versions: ${{ vars.CURSEFORGE_GAME_VERSIONS || '17045,7499,14454,9638,9639' }}
 
       - name: Save build artifact
         uses: actions/upload-artifact@v4

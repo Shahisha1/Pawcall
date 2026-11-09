@@ -1,4 +1,4 @@
-package com.example.pawcall;
+package com.shahisha1.pawcall;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;

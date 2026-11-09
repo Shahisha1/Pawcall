@@ -1,4 +1,4 @@
-package com.example.pawcall;
+package com.shahisha1.pawcall;
 import java.util.function.Function;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;

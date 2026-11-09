@@ -14,13 +14,13 @@
   "icon": "assets/pawcall/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": ["com.example.pawcall.Pawcall"],
-    "client": ["com.example.pawcall.PawcallClient"]
+    "main": ["com.shahisha1.pawcall.Pawcall"],
+    "client": ["com.shahisha1.pawcall.PawcallClient"]
   },
   "depends": {
-    "fabricloader": "*",
-    "minecraft": "*",
+    "fabricloader": ">=0.20.1",
+    "minecraft": "26.3",
     "java": ">=25",
-    "fabric-api": "*"
+    "fabric-api": ">=0.165.0+26.3"
   }
 }

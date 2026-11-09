@@ -1,4 +1,4 @@
-package com.example.pawcall;
+package com.shahisha1.pawcall;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;

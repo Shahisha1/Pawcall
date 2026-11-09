@@ -225,12 +225,37 @@ jobs:
             }' > curseforge-metadata.json
 
           echo "Uploading $JAR_PATH to CurseForge project $CURSEFORGE_PROJECT_ID (MC=$MINECRAFT_VERSION_ID, Fabric=$FABRIC_VERSION_ID)..."
-          curl --fail-with-body --show-error --silent \
-            -H "X-Api-Token: $CURSEFORGE_API_TOKEN" \
-            -F "metadata=$(cat curseforge-metadata.json)" \
-            -F "file=@$JAR_PATH" \
-            "https://minecraft.curseforge.com/api/projects/$CURSEFORGE_PROJECT_ID/upload-file"
 
+          UPLOAD_OK=""
+          UPLOAD_KEY="${CURSEFORGE_CORE_API_KEY:-$CURSEFORGE_API_TOKEN}"
+
+          # Try CurseForge Core API (console.curseforge.com API key)
+          if curl --fail-with-body --show-error --silent \
+            -H "x-api-key: $UPLOAD_KEY" \
+            -F "metadata=<curseforge-metadata.json;type=application/json" \
+            -F "file=@$JAR_PATH" \
+            "https://api.curseforge.com/v1/projects/$CURSEFORGE_PROJECT_ID/upload-file" > curseforge-upload-response.json; then
+            UPLOAD_OK=1
+          else
+            echo "Core API upload failed; trying legacy upload endpoint..."
+            if curl --fail-with-body --show-error --silent \
+              -H "X-Api-Token: $CURSEFORGE_API_TOKEN" \
+              -F "metadata=$(cat curseforge-metadata.json)" \
+              -F "file=@$JAR_PATH" \
+              "https://minecraft.curseforge.com/api/projects/$CURSEFORGE_PROJECT_ID/upload-file" > curseforge-upload-response.json; then
+              UPLOAD_OK=1
+            fi
+          fi
+
+          if [[ -z "$UPLOAD_OK" ]]; then
+            echo "CurseForge upload failed." >&2
+            echo "Check that your token has permission to upload files to project $CURSEFORGE_PROJECT_ID." >&2
+            echo "Use CURSEFORGE_API_TOKEN as the legacy CurseForge upload token, or set CURSEFORGE_CORE_API_KEY to a https://console.curseforge.com/ API key." >&2
+            cat curseforge-upload-response.json >&2 2>/dev/null || true
+            exit 1
+          fi
+
+          echo "CurseForge upload response: $(cat curseforge-upload-response.json)"
           echo "CurseForge upload completed for Pawcall $VERSION."
 
       - name: Save build artifact

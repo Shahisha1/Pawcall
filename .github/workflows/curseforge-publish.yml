@@ -151,34 +151,57 @@ jobs:
 
           if [[ -z "$MINECRAFT_VERSION_ID" || -z "$FABRIC_VERSION_ID" ]]; then
             echo "Resolving CurseForge game version IDs for Minecraft 26.3 / Fabric..."
+
+            resolve_ids() {
+              local json="$1"
+              local mc fab
+              # Core API v2 shape: { data: [ { versions: [ { name, id } ] } ] }
+              mc="$(jq -er --arg version "26.3" '[.data[]?.versions[]? | select(.name == $version) | .id] | first // empty' <<< "$json" 2>/dev/null || true)"
+              fab="$(jq -er '[.data[]?.versions[]? | select(.name == "Fabric") | .id] | first // empty' <<< "$json" 2>/dev/null || true)"
+              # Legacy upload API shape: [ { name, id, ... } ]
+              if [[ -z "$mc" ]]; then
+                mc="$(jq -er --arg version "26.3" '[.[]? | select(.name == $version) | .id] | first // empty' <<< "$json" 2>/dev/null || true)"
+              fi
+              if [[ -z "$fab" ]]; then
+                fab="$(jq -er '[.[]? | select(.name == "Fabric" or .slug == "fabric") | .id] | first // empty' <<< "$json" 2>/dev/null || true)"
+              fi
+              printf '%s|%s' "$mc" "$fab"
+            }
+
             GAME_VERSIONS=""
+            ids=""
+            # Try Core API v2 (works with Core API key)
             for auth_header in "x-api-key: $LOOKUP_KEY" "X-Api-Token: $LOOKUP_KEY"; do
-              if GAME_VERSIONS="$(curl --fail --show-error --silent \
-                -H "$auth_header" \
-                "https://api.curseforge.com/v2/games/432/versions")"; then
-                break
+              if GAME_VERSIONS="$(curl -fsS -H "$auth_header" "https://api.curseforge.com/v2/games/432/versions" 2>/dev/null)"; then
+                ids="$(resolve_ids "$GAME_VERSIONS")"
+                MINECRAFT_VERSION_ID="${ids%%|*}"
+                FABRIC_VERSION_ID="${ids#*|}"
+                [[ -n "$MINECRAFT_VERSION_ID" && -n "$FABRIC_VERSION_ID" ]] && break
               fi
               GAME_VERSIONS=""
+              MINECRAFT_VERSION_ID=""
+              FABRIC_VERSION_ID=""
             done
 
-            if [[ -z "$GAME_VERSIONS" ]]; then
-              echo "Could not resolve CurseForge game version IDs (HTTP error from the versions API)." >&2
+            # Fallback: legacy game versions endpoint (often works with project upload token)
+            if [[ -z "$MINECRAFT_VERSION_ID" || -z "$FABRIC_VERSION_ID" ]]; then
+              echo "Core API lookup unavailable; trying legacy game versions endpoint..."
+              if GAME_VERSIONS="$(curl -fsS -H "X-Api-Token: $CURSEFORGE_API_TOKEN" "https://minecraft.curseforge.com/api/game/versions" 2>/dev/null)"; then
+                ids="$(resolve_ids "$GAME_VERSIONS")"
+                MINECRAFT_VERSION_ID="${ids%%|*}"
+                FABRIC_VERSION_ID="${ids#*|}"
+              fi
+            fi
+
+            if [[ -z "$MINECRAFT_VERSION_ID" || -z "$FABRIC_VERSION_ID" ]]; then
+              echo "Could not resolve CurseForge game version IDs." >&2
               echo "Options:" >&2
               echo "  1) Add repository variables (Actions > Variables) with numeric IDs:" >&2
               echo "     CURSEFORGE_MINECRAFT_VERSION_ID = numeric ID for Minecraft 26.3" >&2
               echo "     CURSEFORGE_FABRIC_VERSION_ID   = numeric ID for Fabric" >&2
               echo "  2) Add a CurseForge Core API key (https://console.curseforge.com/) as secret CURSEFORGE_CORE_API_KEY for automatic lookup." >&2
-              echo "     Keep CURSEFORGE_API_TOKEN as the project upload token if that is what CurseForge upload requires." >&2
               exit 1
             fi
-
-            MINECRAFT_VERSION_ID="$(jq -er \
-              --arg version "26.3" \
-              '[.data[].versions[] | select(.name == $version) | .id] | first // empty' \
-              <<< "$GAME_VERSIONS")"
-            FABRIC_VERSION_ID="$(jq -er \
-              '[.data[].versions[] | select(.name == "Fabric") | .id] | first // empty' \
-              <<< "$GAME_VERSIONS")"
           fi
 
           if [[ -z "$MINECRAFT_VERSION_ID" || -z "$FABRIC_VERSION_ID" ]]; then

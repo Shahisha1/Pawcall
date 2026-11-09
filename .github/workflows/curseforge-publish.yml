@@ -227,31 +227,51 @@ jobs:
           echo "Uploading $JAR_PATH to CurseForge project $CURSEFORGE_PROJECT_ID (MC=$MINECRAFT_VERSION_ID, Fabric=$FABRIC_VERSION_ID)..."
 
           UPLOAD_OK=""
-          UPLOAD_KEY="${CURSEFORGE_CORE_API_KEY:-$CURSEFORGE_API_TOKEN}"
+          CORE_KEY="${CURSEFORGE_CORE_API_KEY:-}"
+          LEGACY_KEY="${CURSEFORGE_API_TOKEN:-}"
 
           # Try CurseForge Core API (console.curseforge.com API key)
-          if curl --fail-with-body --show-error --silent \
-            -H "x-api-key: $UPLOAD_KEY" \
-            -F "metadata=<curseforge-metadata.json;type=application/json" \
-            -F "file=@$JAR_PATH" \
-            "https://api.curseforge.com/v1/projects/$CURSEFORGE_PROJECT_ID/upload-file" > curseforge-upload-response.json; then
-            UPLOAD_OK=1
-          else
-            echo "Core API upload failed; trying legacy upload endpoint..."
+          CORE_ATTEMPT_KEY="${CORE_KEY:-$LEGACY_KEY}"
+          if [[ -n "$CORE_ATTEMPT_KEY" ]]; then
+            echo "Trying CurseForge Core upload API..."
             if curl --fail-with-body --show-error --silent \
-              -H "X-Api-Token: $CURSEFORGE_API_TOKEN" \
+              -H "x-api-key: $CORE_ATTEMPT_KEY" \
+              -F "metadata=<curseforge-metadata.json;type=application/json" \
+              -F "file=@$JAR_PATH" \
+              "https://api.curseforge.com/v1/projects/$CURSEFORGE_PROJECT_ID/upload-file" > curseforge-upload-core.json; then
+              UPLOAD_OK=1
+              cp curseforge-upload-core.json curseforge-upload-response.json
+            else
+              echo "Core API upload failed. Response:" >&2
+              cat curseforge-upload-core.json >&2 2>/dev/null || true
+              echo >&2
+            fi
+          fi
+
+          # Fallback: legacy upload endpoint (CurseForge account/project upload token)
+          if [[ -z "$UPLOAD_OK" && -n "$LEGACY_KEY" ]]; then
+            echo "Trying legacy CurseForge upload endpoint..."
+            if curl --fail-with-body --show-error --silent \
+              -H "X-Api-Token: $LEGACY_KEY" \
               -F "metadata=$(cat curseforge-metadata.json)" \
               -F "file=@$JAR_PATH" \
-              "https://minecraft.curseforge.com/api/projects/$CURSEFORGE_PROJECT_ID/upload-file" > curseforge-upload-response.json; then
+              "https://minecraft.curseforge.com/api/projects/$CURSEFORGE_PROJECT_ID/upload-file" > curseforge-upload-legacy.json; then
               UPLOAD_OK=1
+              cp curseforge-upload-legacy.json curseforge-upload-response.json
+            else
+              echo "Legacy upload failed. Response:" >&2
+              cat curseforge-upload-legacy.json >&2 2>/dev/null || true
+              echo >&2
             fi
           fi
 
           if [[ -z "$UPLOAD_OK" ]]; then
             echo "CurseForge upload failed." >&2
-            echo "Check that your token has permission to upload files to project $CURSEFORGE_PROJECT_ID." >&2
-            echo "Use CURSEFORGE_API_TOKEN as the legacy CurseForge upload token, or set CURSEFORGE_CORE_API_KEY to a https://console.curseforge.com/ API key." >&2
-            cat curseforge-upload-response.json >&2 2>/dev/null || true
+            echo "Troubleshooting:" >&2
+            echo "  - Confirm CURSEFORGE_PROJECT_ID is correct (current: $CURSEFORGE_PROJECT_ID)." >&2
+            echo "  - CURSEFORGE_CORE_API_KEY should be a key from https://console.curseforge.com/ with permission to upload files for this project." >&2
+            echo "  - CURSEFORGE_API_TOKEN should be the CurseForge account/project upload token accepted by the legacy upload API (if used). Do not paste the same Core key if it is rejected as malformed." >&2
+            echo "  - Re-copy secret values with no leading/trailing spaces or newlines." >&2
             exit 1
           fi
 

@@ -140,14 +140,14 @@ jobs:
         run: |
           set -euo pipefail
 
-          if [[ -z "${CURSEFORGE_API_TOKEN:-}" ]]; then
-            echo "Missing CURSEFORGE_API_TOKEN. Add it in GitHub: Settings > Secrets and variables > Actions > New repository secret." >&2
+          if [[ -z "${CURSEFORGE_API_TOKEN:-}" && -z "${CURSEFORGE_CORE_API_KEY:-}" ]]; then
+            echo "Missing CurseForge credentials. Add CURSEFORGE_CORE_API_KEY (console.curseforge.com) and/or CURSEFORGE_API_TOKEN in GitHub Actions secrets." >&2
             exit 1
           fi
 
           MINECRAFT_VERSION_ID="${CURSEFORGE_MINECRAFT_VERSION_ID:-}"
           FABRIC_VERSION_ID="${CURSEFORGE_FABRIC_VERSION_ID:-}"
-          LOOKUP_KEY="${CURSEFORGE_CORE_API_KEY:-$CURSEFORGE_API_TOKEN}"
+          LOOKUP_KEY="${CURSEFORGE_CORE_API_KEY:-${CURSEFORGE_API_TOKEN:-}}"
 
           if [[ -z "$MINECRAFT_VERSION_ID" || -z "$FABRIC_VERSION_ID" ]]; then
             echo "Resolving CurseForge game version IDs for Minecraft 26.3 / Fabric..."
@@ -249,7 +249,7 @@ jobs:
           fi
 
           # Fallback: legacy upload endpoint (CurseForge account/project upload token)
-          if [[ -z "$UPLOAD_OK" && -n "$LEGACY_KEY" ]]; then
+          if [[ -z "$UPLOAD_OK" && -n "$LEGACY_KEY" && -z "$CORE_KEY" ]]; then
             echo "Trying legacy CurseForge upload endpoint..."
             if curl --fail-with-body --show-error --silent \
               -H "X-Api-Token: $LEGACY_KEY" \

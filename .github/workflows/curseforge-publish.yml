@@ -136,7 +136,8 @@ jobs:
           changelog: ${{ steps.release.outputs.changelog }}
           changelog_type: markdown
           release_type: ${{ steps.release.outputs.release_type }}
-          game_versions: "Minecraft 26.3,Fabric,Java 25"
+          # Override with Actions variable CURSEFORGE_GAME_VERSIONS if CurseForge requires different labels.
+          game_versions: ${{ vars.CURSEFORGE_GAME_VERSIONS || 'Minecraft 26.3,Fabric,Java 25,Client,Server' }}
 
       - name: Save build artifact
         uses: actions/upload-artifact@v4

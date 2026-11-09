@@ -419,6 +419,8 @@
       font-size: 0.95rem;
     }
     .recipe-figure { margin: 0; min-width: 0; }
+    .recipe-board-image { min-height: 250px; }
+    .recipe-reference { display: block; width: min(100%, 240px); height: auto; image-rendering: pixelated; border: 3px solid #4c554c; box-shadow: 4px 4px 0 rgba(23,39,29,.25); }
     .recipe-board {
       display: flex;
       align-items: center;
@@ -790,16 +792,10 @@
           <p>Also available in the Tools &amp; Utilities creative tab.</p>
         </div>
         <figure class="recipe-figure">
-          <div class="recipe-board">
-            <div class="recipe-grid" role="img" aria-label="Minecraft crafting recipe: iron ingot in the top-left slot, bone directly below it, all other slots empty">
-              <span class="recipe-slot filled iron"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 13 10 7h16l4 7-5 10H7L3 18Z" fill="#d5d8d4"/><path d="M10 7h16l4 7H6Z" fill="#f0f1ed"/><path d="M6 14h24l-5 10H7L3 18Z" fill="#9da7a3"/><path d="M10 9h14l3 4H7Z" fill="#fff"/></svg></span><span class="recipe-slot"></span><span class="recipe-slot"></span>
-              <span class="recipe-slot filled bone"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 5a5 5 0 0 1 5 5l8 8a5 5 0 1 1-4 4l-8-8a5 5 0 1 1-1-9Z" fill="#e8dfbd" stroke="#9b8d6c" stroke-width="2"/><path d="m12 11 9 9" stroke="#fff8e3" stroke-width="3"/></svg></span><span class="recipe-slot"></span><span class="recipe-slot"></span>
-              <span class="recipe-slot"></span><span class="recipe-slot"></span><span class="recipe-slot"></span>
-            </div>
-            <span class="recipe-arrow" aria-hidden="true">→</span>
-            <div class="recipe-output"><img src="assets/pawcall-logo.png" alt="Pawcall whistle"><span>1 × WHISTLE</span></div>
+          <div class="recipe-board recipe-board-image">
+            <img class="recipe-reference" src="assets/whistle-recipe.png" width="166" height="170" alt="Minecraft crafting grid showing an iron ingot in the top-left slot and a bone directly below it; all other slots are empty">
           </div>
-          <figcaption>1 IRON INGOT + 1 BONE → 1 PAWCALL WHISTLE</figcaption>
+          <figcaption>THE IN-GAME RECIPE · 1 IRON INGOT + 1 BONE → 1 PAWCALL WHISTLE</figcaption>
         </figure>
       </div>
     </section>

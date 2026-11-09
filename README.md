@@ -80,11 +80,11 @@ Pets may fail to arrive if they are blocked by terrain, hazards, distance constr
 
 Craft one Pawcall Whistle in a crafting grid:
 
-|  | Column 1 | Column 2 | Column 3 |
-| --- | --- | --- | --- |
-| **Top** | Iron Ingot |  |  |
-| **Middle** | Bone |  |  |
-| **Bottom** |  |  |  |
+<p align="center">
+  <img src="assets/whistle-recipe.png" alt="Minecraft crafting recipe: iron ingot in the top-left slot and bone directly below it" width="220">
+</p>
+
+The image above shows the in-game 3×3 crafting layout: place one iron ingot in the top-left slot and one bone directly below it. Leave every other slot empty.
 
 The whistle is also available in the **Tools & Utilities** creative tab.
 

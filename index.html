@@ -326,25 +326,28 @@
       line-height: 1.5;
     }
 
-    .call-scene {
-      margin: 0;
-      min-width: 0;
-      background: var(--pine);
-      border: 4px solid var(--pine-deep);
-      box-shadow: 7px 7px 0 #9ca98e;
-    }
-    .scene-top, .call-scene figcaption {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 15px;
-      background: var(--pine-deep);
-      color: #d5dfc4;
-      font: 700 11px/1.45 var(--mono);
-      letter-spacing: 0.02em;
-    }
-    .scene-top { color: #e7e9d8; font-size: 12px; letter-spacing: 0.04em; }
-    .scene-art { width: 100%; height: auto; image-rendering: pixelated; }
+
+
+    .hero-kicker { margin:0 0 15px; color:var(--leaf); font:700 11px/1.4 var(--mono); letter-spacing:.12em; }
+    .range-panel { min-width:0; padding:clamp(22px,3.5vw,38px); color:var(--white); background:var(--pine); border:3px solid var(--pine-deep); box-shadow:7px 7px 0 #9ca98e; }
+    .range-panel-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-bottom:14px; border-bottom:1px solid rgba(246,243,231,.24); color:#d5dfc4; font:700 11px/1.4 var(--mono); letter-spacing:.06em; }
+    .status-dot { display:inline-flex; align-items:center; gap:8px; color:var(--fern); }
+    .status-dot::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--fern); }
+    .range-feature { padding:clamp(26px,4vw,42px) 0 28px; }
+    .range-eyebrow { color:var(--sun); font:700 11px/1.3 var(--mono); letter-spacing:.1em; }
+    .range-number { margin:8px 0 4px; color:var(--sun-bright); font:600 clamp(4.5rem,9vw,7.2rem)/.92 var(--serif); letter-spacing:-.045em; }
+    .range-number span { display:inline-block; color:#e6e8d8; font:500 clamp(1rem,1.8vw,1.35rem)/1 var(--mono); letter-spacing:0; }
+    .range-caption { margin:12px 0 0; color:#d4ddcd; font-size:1rem; }
+    .range-comparison { padding-top:20px; border-top:1px solid rgba(246,243,231,.24); }
+    .range-row { display:flex; align-items:center; gap:12px; min-width:0; }
+    .range-icon { display:grid; place-items:center; flex:none; width:30px; height:30px; border:1px solid #9eaa99; color:var(--white); font:700 13px var(--mono); }
+    .whistle-mark { background:var(--sun); border-color:var(--sun); color:var(--pine-deep); }
+    .range-label { flex:1; color:#d4ddcd; font-size:14px; }
+    .range-row strong { color:var(--white); font:700 12px var(--mono); white-space:nowrap; }
+    .range-track { height:5px; margin:10px 0 19px 42px; background:rgba(246,243,231,.15); }
+    .range-fill { display:block; width:100%; height:100%; background:var(--fern); }
+    .range-fill-short { width:12.5%; background:#c7cdb8; }
+    .range-panel-foot { margin:8px 0 0; padding-top:17px; border-top:1px solid rgba(246,243,231,.24); color:#c4cdbd; font-size:13px; }
 
     .section { padding: clamp(48px, 7vw, 68px) 0; }
     .section-heading, .install-heading { max-width: 760px; margin-bottom: 30px; }
@@ -572,7 +575,7 @@
     /* Responsive adjustments */
     @media (max-width: 1024px) {
       .hero-grid { grid-template-columns: 1fr; }
-      .call-scene { max-width: 720px; }
+      .range-panel { max-width: 720px; }
       h1 { max-width: 16ch; }
       .behaviour-layout, .craft-layout, .install-layout, .faq-layout { grid-template-columns: 1fr; }
       .faq-layout { gap: 18px; }
@@ -617,7 +620,7 @@
     @media (max-width: 640px) {
       .hero-actions > * { flex: 1 1 100%; }
       .uiverse-download, .uiverse-star { width: 100%; }
-      .scene-top, .call-scene figcaption { flex-wrap: wrap; }
+      .range-panel { padding: 22px; }
       .recipe-grid { grid-template-columns: repeat(3, 52px); }
       .recipe-slot { width: 52px; height: 52px; }
       .recipe-output img { width: 58px; height: 58px; }
@@ -640,7 +643,7 @@
       .recipe-slot.filled { padding: 7px; }
       .recipe-arrow { font-size: 24px; }
       .recipe-output img { width: 48px; height: 48px; }
-      .scene-top, .call-scene figcaption { font-size: 10px; padding: 10px 12px; }
+      .range-panel-head { font-size: 10px; }
       .faq-list summary { padding-right: 30px; }
     }
 
@@ -681,8 +684,9 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <h1>Call your tamed pets in Minecraft.</h1>
-          <p class="hero-intro">Call your owned, tamed pets from up to 12 blocks away. Hold the Pawcall whistle in either hand to extend the range to 96 blocks.</p>
+          <p class="hero-kicker">A LITTLE WHISTLE. A LONG WAY HOME.</p>
+          <h1>Your pets are never too far away.</h1>
+          <p class="hero-intro">Call your owned, tamed pets with a keypress. Hold the Pawcall whistle in either hand to reach up to 96 blocks — and let them make their own way back to you.</p>
           <div class="hero-actions">
             <a class="uiverse-download" href="https://www.curseforge.com/minecraft/mc-mods/pawcall" target="_blank" rel="noopener noreferrer" aria-label="Download Pawcall on CurseForge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M5 17v3h14v-3"/></svg>
@@ -700,41 +704,17 @@
           </div>
           <p class="api-note">Requires Fabric API 0.165.0+26.3. All listed versions must match your Minecraft instance.</p>
         </div>
-        <figure class="call-scene" aria-labelledby="scene-caption">
-          <div class="scene-top"><span>PAWCALL / FIELD TEST</span><span>12 → 96 BLOCKS</span></div>
-          <svg class="scene-art" viewBox="0 0 560 390" role="img" aria-label="Pixel-art illustration of a player using a whistle while a wolf and cat turn toward them">
-            <defs>
-              <pattern id="grass" width="32" height="32" patternUnits="userSpaceOnUse"><rect width="32" height="32" fill="#547d43"/><rect width="16" height="8" fill="#6e9950"/><rect x="20" y="17" width="8" height="8" fill="#426b38"/></pattern>
-              <pattern id="dirt" width="32" height="32" patternUnits="userSpaceOnUse"><rect width="32" height="32" fill="#795438"/><rect x="4" y="7" width="8" height="8" fill="#966943"/><rect x="20" y="21" width="8" height="7" fill="#62432f"/></pattern>
-            </defs>
-            <rect width="560" height="390" fill="#243b2b"/>
-            <rect x="24" y="24" width="512" height="342" fill="#314b35" stroke="#18291e" stroke-width="8"/>
-            <path d="M32 250H528V358H32Z" fill="url(#dirt)"/>
-            <path d="M32 234H528V258H32Z" fill="url(#grass)"/>
-            <path d="M72 234V202H136V234M392 234V194H464V234" fill="#547d43" stroke="#253c2c" stroke-width="8"/>
-            <path d="M104 202V154H152V202M424 194V138H472V194" fill="#795438" stroke="#253c2c" stroke-width="8"/>
-            <circle cx="280" cy="166" r="114" fill="none" stroke="#c5d98c" stroke-width="3" stroke-dasharray="8 10" opacity=".9"/>
-            <circle cx="280" cy="166" r="76" fill="none" stroke="#e4c76c" stroke-width="3" stroke-dasharray="5 9"/>
-            <path d="M244 112h24v-16h24v16h16v24h-16v16h-24v-16h-24z" fill="#d5b56b" stroke="#17271d" stroke-width="7"/>
-            <path d="M260 136h16v16h-16z" fill="#8c633e"/>
-            <path d="M266 160h28v16h-28zM250 176h60v18h-60zM258 194h44v32h-44z" fill="#496b9a" stroke="#17271d" stroke-width="7"/>
-            <path d="M250 222h20v24h-20zM286 222h20v24h-20z" fill="#4a3529"/>
-            <path d="M166 218h30v-16h24v16h16v38h-16v24h-54v-24h-16v-22h16z" fill="#c8c5b6" stroke="#17271d" stroke-width="7"/>
-            <path d="M166 218h16v-24h20v24h34v20h-70z" fill="#dedbd0"/>
-            <path d="M180 236h12v12h-12zM210 236h12v12h-12z" fill="#263a2d"/>
-            <path d="M184 258h20v10h-20z" fill="#4a3529"/>
-            <path d="M364 218h26v-20h26v20h16v38h-16v24h-52v-24h-16v-22h16z" fill="#bd8a48" stroke="#17271d" stroke-width="7"/>
-            <path d="M364 218h16v-24h20v24h32v20h-68z" fill="#d6a65d"/>
-            <path d="M378 236h12v12h-12zM406 236h12v12h-12z" fill="#263a2d"/>
-            <path d="M382 258h20v10h-20z" fill="#4a3529"/>
-            <path d="M236 88q-22-24-2-44M280 78q0-28 0-42M324 88q22-24 2-44" fill="none" stroke="#e4c76c" stroke-width="7" stroke-linecap="square"/>
-            <rect x="42" y="42" width="116" height="30" fill="#18291e" stroke="#78965b" stroke-width="2"/>
-            <text x="56" y="62" fill="#f4f1d8" font-size="13" font-family="monospace">CALL SENT</text>
-            <rect x="398" y="42" width="112" height="30" fill="#18291e" stroke="#78965b" stroke-width="2"/>
-            <text x="412" y="62" fill="#f4f1d8" font-size="13" font-family="monospace">FOLLOW ME</text>
-          </svg>
-          <figcaption id="scene-caption"><span>HOW A CALL WORKS</span><span>PIXEL-ART EXPLANATION · NOT GAMEPLAY FOOTAGE</span></figcaption>
-        </figure>
+        <aside class="range-panel" aria-label="Pawcall calling range overview">
+          <div class="range-panel-head"><span>PAWCALL / FIELD GUIDE</span><span class="status-dot">READY</span></div>
+          <div class="range-feature"><span class="range-eyebrow">WITH THE WHISTLE</span><p class="range-number">96<span> blocks</span></p><p class="range-caption">Bring your pets back from further away.</p></div>
+          <div class="range-comparison">
+            <div class="range-row"><span class="range-icon" aria-hidden="true">G</span><span class="range-label">Quick call</span><strong>12 blocks</strong></div>
+            <div class="range-track" aria-hidden="true"><span class="range-fill range-fill-short"></span></div>
+            <div class="range-row"><span class="range-icon whistle-mark" aria-hidden="true">P</span><span class="range-label">Whistle call</span><strong>96 blocks</strong></div>
+            <div class="range-track" aria-hidden="true"><span class="range-fill"></span></div>
+          </div>
+          <p class="range-panel-foot">They find their own way. No teleporting.</p>
+        </aside>
       </div>
     </section>
 
